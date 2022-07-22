@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    width: 680px;
+    height: 840px;
+    background: #fbe0dc;
+    border-radius: 20px;
+}
+
+.main_picture {
+    position: absolute;
+    left: -68px;
+    top: -30px;
+}
