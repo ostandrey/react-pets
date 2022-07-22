@@ -1,0 +1,39 @@
+.reaction_list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.reaction_item {
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    background: #F8F8F7;
+    border-radius: 10px;
+}
+
+.reaction_time {
+    margin-right: 10px;
+    padding: 3px 10px;
+    background: #FFFFFF;
+    border-radius: 5px;
+
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #1D1D1D;
+}
+
+.reaction_info {
+    width: 100%;
+    color: #8C8C8C;
+
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}

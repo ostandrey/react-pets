@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    width: 100%;
+}
+
+/*.header:first-child {*/
+/*    margin-right: 10px;*/
+/*}*/
+
+.search_bar {
+    padding: 15px 20px;
+    width: 470px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #8C8C8C;
+}
+
+.reaction_link {
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+}
