@@ -1,9 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../components/Header/Header";
 import classes from "./Breeds.module.css";
 import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
+import DogService from "../API/DogService";
+import BreedItem from "../components/BreedItem/BreedItem";
+import BreedsList from "../components/BreedsList/BreedsList";
+import MyButton from "../components/UI/button/MyButton";
 
 const Breeds = () => {
+    const [dogs, setDogs] = useState([]);
+
+    useEffect(() => {
+        fetchDogs()
+    }, [])
+
+    async function fetchDogs() {
+        const dogs = await DogService.getAll();
+        setDogs(dogs)
+    }
+
+    // if(!dogs.length) {
+    //     return (
+    //         <h1 style={{textAlign: 'center'}}>No posts not found!</h1>
+    //     )
+    // }
+
     return (
         <div>
             <Header/>
@@ -11,24 +32,20 @@ const Breeds = () => {
                 <div className={classes.control_panel}>
                     <Breadcrumb/>
                     <select name="" id="" className={classes.select}>
-                        All breeds
+                        options
                     </select>
                     <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
                         Limit: 10
                     </select>
-                    <button className={classes.sorting_btn}>
+                    <MyButton className={classes.sorting_btn}>
                         <img src={require('../assets/ascending.png')} alt="ascending"/>
-                    </button>
-                    <button className={classes.sorting_btn}>
+                    </MyButton>
+                    <MyButton className={classes.sorting_btn}>
                         <img src={require('../assets/descending.png')} alt="descending"/>
-                    </button>
+                    </MyButton>
                 </div>
                 <div className={classes.grid_container}>
-                    <div className={classes.div1}></div>
-                    <div className={classes.div2}></div>
-                    <div className={classes.div3}></div>
-                    <div className={classes.div4}></div>
-                    <div className={classes.div5}></div>
+                    <BreedsList dogs={dogs}/>
                 </div>
             </section>
         </div>
