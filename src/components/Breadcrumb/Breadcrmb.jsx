@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./Breadcrumb.module.css";
-import MyButton from "../UI/button/MyButton";
+import MyButton from "../UI/MyButton";
 
 const Breadcrumb = () => {
     return (

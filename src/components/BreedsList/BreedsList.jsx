@@ -5,7 +5,7 @@ const BreedsList = ({dogs}) => {
     return (
         <div>
             {
-                dogs && dogs.map (dog =>
+                dogs.map (dog =>
                     <BreedItem dog={dog} key={dog.id}/>
                 )
             }

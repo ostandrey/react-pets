@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
 import classes from "./Header.module.css";
-import MyButton from "../UI/button/MyButton";
+import MyButton from "../UI/MyButton";
+import MyInput from "../UI/MyInput";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState('')
     return (
         <div className={classes.header}>
-            <input
-                type="text"
+            <MyInput
                 className={classes.search_bar}
-                placeholder="Search for breeds by name"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
             />
             {/*    Links*/}
             <MyButton className={classes.reaction_link}>

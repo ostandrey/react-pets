@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../components/Header/Header";
 import classes from "./Gallery.module.css";
 import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
-import MyButton from "../components/UI/button/MyButton";
+import MyButton from "../components/UI/MyButton";
 
 const Gallery = () => {
     return (

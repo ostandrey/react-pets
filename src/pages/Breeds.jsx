@@ -5,7 +5,7 @@ import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
 import DogService from "../API/DogService";
 import BreedItem from "../components/BreedItem/BreedItem";
 import BreedsList from "../components/BreedsList/BreedsList";
-import MyButton from "../components/UI/button/MyButton";
+import MyButton from "../components/UI/MyButton";
 
 const Breeds = () => {
     const [dogs, setDogs] = useState([]);
@@ -45,7 +45,12 @@ const Breeds = () => {
                     </MyButton>
                 </div>
                 <div className={classes.grid_container}>
-                    <BreedsList dogs={dogs}/>
+                    {
+                        dogs.length !== 0
+                            ? <BreedsList dogs={dogs}/>
+                            : <div>No item found</div>
+                    }
+
                 </div>
             </section>
         </div>
