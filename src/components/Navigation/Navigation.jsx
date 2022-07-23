@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Navigation.module.css'
+import {Link} from "react-router-dom";
 
 const Navigation = () => {
     return (
@@ -14,7 +15,7 @@ const Navigation = () => {
             <section className={classes.links_container}>
                 <h3 className={classes.title_sm}>Lets start using The Cat API</h3>
                 <div className={classes.nav_buttons}>
-                    <div className={classes.nav_container}>
+                    <Link to='/voting' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_voting].join(' ')}>
                             <img src={require("../../assets/vote-table.png")} alt="vote-table"/>
                         </div>
@@ -23,8 +24,8 @@ const Navigation = () => {
                                 Voting
                             </h2>
                         </div>
-                    </div>
-                    <div className={classes.nav_container}>
+                    </Link>
+                    <Link to='/breeds' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_breeds].join(' ')}>
                             <img src={require("../../assets/pet-breeds.png")} alt="pet-breeds"/>
                         </div>
@@ -33,8 +34,8 @@ const Navigation = () => {
                                 Breeds
                             </h2>
                         </div>
-                    </div>
-                    <div className={classes.nav_container}>
+                    </Link>
+                    <Link to='/gallery' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_gallery].join(' ')}>
                             <img src={require("../../assets/images-search.png")} alt="images-search"/>
                         </div>
@@ -43,7 +44,7 @@ const Navigation = () => {
                                 Gallery
                             </h2>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </section>
         </div>

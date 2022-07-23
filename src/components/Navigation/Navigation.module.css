@@ -56,6 +56,7 @@
     flex-direction: column;
     width: 138px;
     height: 244px;
+    text-decoration: none;
 }
 
 .nav_container:hover .nav_card {
