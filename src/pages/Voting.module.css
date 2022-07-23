@@ -10,31 +10,6 @@
     border-radius: 20px;
 }
 
-.btn_back {
-    padding: 10px 15px;
-    background: #FBE0DC;
-    border-radius: 10px;
-    border: none;
-    margin-right: 10px;
-}
-
-.breadcrumb {
-    background: #FF868E;
-    border-radius: 10px;
-    padding: 5px 30px;
-
-    font-family: 'Jost', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-}
-
 .content {
     position: relative;
     margin-top: 20px;
