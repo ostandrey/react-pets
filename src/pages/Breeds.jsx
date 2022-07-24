@@ -23,14 +23,17 @@ const Breeds = () => {
     async function fetchDogs() {
         setIsDogsLoading(true);
         const dogs = await DogService.getAllDogs();
-        setDogs(dogs);
+        setDogs(dogs.data);
         setIsDogsLoading(false);
     }
 
     async function fetchDogsByName(selectedDogs) {
         setIsDogsLoading(true);
-        const dogs = await DogService.getDogsByName(selectedDogs);
-        setFilteredDogs(dogs);
+        let dogs = await DogService.getDogsByName(selectedDogs);
+        if(selectedDogs === 'All dogs') {
+            dogs = await DogService.getAllDogs();
+        }
+        setFilteredDogs(dogs.data);
         setIsDogsLoading(false);
     }
 
@@ -67,7 +70,7 @@ const Breeds = () => {
                         value={selectedDogs}
                         onChange={e => setSelectedDogs(e.target.value)}
                         className={classes.select}>
-                        <option value="alldogs">All dogs</option>
+                        <option value="All dogs">All dogs</option>
                         {
                             dogs.map((dogName) =>
                                 <option value={dogName.name}>{dogName.name}</option>
@@ -75,7 +78,10 @@ const Breeds = () => {
                         }
                     </select>
                     <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
-                        Limit: 10
+                        <option value="5">Limit: 5</option>
+                        <option value="10">Limit: 10</option>
+                        <option value="15">Limit: 15</option>
+                        <option value="20">Limit: 20</option>
                     </select>
                     <MyButton className={classes.sorting_btn}>
                         <img
