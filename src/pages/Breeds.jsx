@@ -5,6 +5,7 @@ import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
 import DogService from "../API/DogService";
 import BreedsList from "../components/BreedsList/BreedsList";
 import MyButton from "../components/UI/MyButton";
+import Loader from "../components/UI/Loader/Loader";
 
 const Breeds = () => {
     const [dogs, setDogs] = useState([]);
@@ -12,6 +13,7 @@ const Breeds = () => {
     const [filteredDogs, setFilteredDogs] = useState('');
     const [order, setOrder] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [isDogsLoading, setIsDogsLoading] = useState(false);
 
     useEffect(() => {
         fetchDogs();
@@ -19,14 +21,17 @@ const Breeds = () => {
     }, [selectedDogs])
 
     async function fetchDogs() {
+        setIsDogsLoading(true);
         const dogs = await DogService.getAllDogs();
-        setDogs(dogs)
+        setDogs(dogs);
+        setIsDogsLoading(false);
     }
 
     async function fetchDogsByName(selectedDogs) {
-        console.log(selectedDogs)
+        setIsDogsLoading(true);
         const dogs = await DogService.getDogsByName(selectedDogs);
-        setFilteredDogs(dogs)
+        setFilteredDogs(dogs);
+        setIsDogsLoading(false);
     }
 
     const sortedAndFilteredDogs = useMemo(() => {
@@ -89,9 +94,9 @@ const Breeds = () => {
                 </div>
                 <div className={classes.grid_container}>
                     {
-                        sortedAndFilteredDogs.length !== 0
-                            ? <BreedsList dogs={sortedAndFilteredDogs}/>
-                            : <div>No item found</div>
+                        isDogsLoading
+                            ? <Loader/>
+                            : sortedAndFilteredDogs && <BreedsList dogs={sortedAndFilteredDogs}/>
                     }
                 </div>
             </section>

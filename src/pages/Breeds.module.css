@@ -44,9 +44,11 @@
     grid-template-rows: repeat(3, 1fr) 0;
     gap: 20px;
     margin-top: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-.grid_container > div {
-    background-color: #C4C4C4;
-    border-radius: 20px;
-}
+/*.grid_container > div {*/
+/*    background-color: #C4C4C4;*/
+/*    border-radius: 20px;*/
+/*}*/
