@@ -1,17 +1,53 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from './Voting.module.css'
 import Header from "../components/Header/Header";
 import ReactionList from "../components/ReactionList/ReactionList";
 import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
+import DogService from "../API/DogService";
+import Loader from "../components/UI/Loader/Loader";
+import BreedsList from "../components/BreedsList/BreedsList";
 
 const Voting = () => {
+    const [dog, setDog] = useState([]);
+    const [votes, setVotes] = useState([])
+    const [isDogsLoading, setIsDogsLoading] = useState(false);
+
+    useEffect(() => {
+        fetchRandomDog();
+        fetchDogVotes();
+    }, [])
+
+    async function fetchRandomDog() {
+        setIsDogsLoading(true);
+        const dog = await DogService.getDogRandom();
+        setDog(dog.data);
+        setIsDogsLoading(false);
+    }
+
+    async function fetchDogVotes() {
+        setIsDogsLoading(true);
+        const votes = await DogService.getDogVotes();
+        setVotes(votes.data);
+        setIsDogsLoading(false);
+    }
+
+    if(!dog.length) {
+        return(
+            <img src={require('../assets/not-found-image.png')} alt='not found'/>
+        )
+    }
+
     return (
         <div className={classes.container}>
             <Header/>
             <section className={classes.content_wrapper}>
                 <Breadcrumb/>
                 <div className={classes.content}>
-                    <img src={require("../assets/image 1.png")} alt="test"/>
+                    {
+                        isDogsLoading
+                            ? <Loader/>
+                            : <img src={dog[0].url} alt='dog' className={classes.content_image}/>
+                    }
                     <div className={classes.reaction_group_btn}>
                         <img
                             className={[classes.reaction_btn, classes.btn_smiley].join(' ')}

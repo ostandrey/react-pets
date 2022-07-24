@@ -18,4 +18,22 @@ export default class DogService {
             console.log(e)
         }
     }
+
+    static async getDogRandom() {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/images/search`)
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async getDogVotes() {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/votes`)
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
