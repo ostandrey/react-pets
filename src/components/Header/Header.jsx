@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from "./Header.module.css";
+import MyButton from "../UI/MyButton";
+import MyInput from "../UI/MyInput";
 
-const Header = () => {
+const Header = ({value, onChange}) => {
     return (
         <div className={classes.header}>
-            <input type="text" className={classes.search_bar} placeholder="Search for breeds by name"/>
+            <MyInput
+                value={value}
+                onChange={onChange}
+                className={classes.search_bar}
+            />
             {/*    Links*/}
-            <button className={classes.reaction_link}>
+            <MyButton className={classes.reaction_link}>
                 <img src={require("../../assets/smiley.png")} alt="good smiley"/>
-            </button>
-            <button className={classes.reaction_link}>
+            </MyButton>
+            <MyButton className={classes.reaction_link}>
                 <img src={require("../../assets/heart.png")} alt="heart"/>
-            </button>
-            <button className={classes.reaction_link}>
+            </MyButton>
+            <MyButton className={classes.reaction_link}>
                 <img src={require("../../assets/bad-smiley.png")} alt="bad smiley"/>
-            </button>
+            </MyButton>
         </div>
     );
 };

@@ -1,34 +1,98 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Header from "../components/Header/Header";
 import classes from "./Breeds.module.css";
 import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
+import DogService from "../API/DogService";
+import BreedsList from "../components/BreedsList/BreedsList";
+import MyButton from "../components/UI/MyButton";
 
 const Breeds = () => {
+    const [dogs, setDogs] = useState([]);
+    const [selectedDogs, setSelectedDogs] = useState('');
+    const [filteredDogs, setFilteredDogs] = useState('');
+    const [order, setOrder] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+
+    useEffect(() => {
+        fetchDogs();
+        fetchDogsByName(selectedDogs);
+    }, [selectedDogs])
+
+    async function fetchDogs() {
+        const dogs = await DogService.getAllDogs();
+        setDogs(dogs)
+    }
+
+    async function fetchDogsByName(selectedDogs) {
+        console.log(selectedDogs)
+        const dogs = await DogService.getDogsByName(selectedDogs);
+        setFilteredDogs(dogs)
+    }
+
+    const sortedAndFilteredDogs = useMemo(() => {
+        if(order === 'ASC') {
+            return [...filteredDogs].sort((a, b) => {
+                return a["name"] > b["name"] ? 1 : -1
+            });
+        }
+
+        if(order === 'DSC') {
+            return [...filteredDogs].sort((a, b) => {
+                return a["name"] > b["name"] ? -1 : 1
+            });
+        }
+
+        return filteredDogs;
+    }, [filteredDogs, order]);
+
+    // const sortedAndSelectedDogs = useMemo(() => {
+    //     return sortedDogs.filter(dog => dog.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    // }, [searchQuery, sortedDogs])
+
     return (
         <div>
-            <Header/>
+            <Header
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+            />
             <section className={classes.content_wrapper}>
                 <div className={classes.control_panel}>
                     <Breadcrumb/>
-                    <select name="" id="" className={classes.select}>
-                        All breeds
+                    <select
+                        value={selectedDogs}
+                        onChange={e => setSelectedDogs(e.target.value)}
+                        className={classes.select}>
+                        <option value="alldogs">All dogs</option>
+                        {
+                            dogs.map((dogName) =>
+                                <option value={dogName.name}>{dogName.name}</option>
+                            )
+                        }
                     </select>
                     <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
                         Limit: 10
                     </select>
-                    <button className={classes.sorting_btn}>
-                        <img src={require('../assets/ascending.png')} alt="ascending"/>
-                    </button>
-                    <button className={classes.sorting_btn}>
-                        <img src={require('../assets/descending.png')} alt="descending"/>
-                    </button>
+                    <MyButton className={classes.sorting_btn}>
+                        <img
+                            onClick={() => setOrder('DSC')}
+                            src={require('../assets/ascending.png')}
+                            alt="ascending"
+                        />
+                    </MyButton>
+                    <MyButton className={classes.sorting_btn}>
+                        <img
+                            onClick={() => setOrder('ASC')}
+                            src={require('../assets/descending.png')}
+                            alt="descending"
+                        />
+                    </MyButton>
                 </div>
                 <div className={classes.grid_container}>
-                    <div className={classes.div1}></div>
-                    <div className={classes.div2}></div>
-                    <div className={classes.div3}></div>
-                    <div className={classes.div4}></div>
-                    <div className={classes.div5}></div>
+                    {
+                        sortedAndFilteredDogs.length !== 0
+                            ? <BreedsList dogs={sortedAndFilteredDogs}/>
+                            : <div>No item found</div>
+                    }
                 </div>
             </section>
         </div>

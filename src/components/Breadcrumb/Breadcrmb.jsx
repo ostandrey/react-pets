@@ -1,12 +1,13 @@
 import React from 'react';
 import classes from "./Breadcrumb.module.css";
+import MyButton from "../UI/MyButton";
 
 const Breadcrumb = () => {
     return (
         <div className={classes.breadcrumb_wrapper}>
-            <button className={classes.btn_back}>
+            <MyButton className={classes.btn_back}>
                 <img src={require("../../assets/arrow-back.png")} alt="Back"/>
-            </button>
+            </MyButton>
             <span className={classes.breadcrumb}>
                 Voting
             </span>
