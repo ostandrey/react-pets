@@ -14,5 +14,5 @@ html, body, #root {
     justify-items: center;
     padding: 30px 30px 0;
     background: #F8F8F7;
-    height: inherit;
+    /*height: inherit;*/
 }

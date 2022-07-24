@@ -3,11 +3,12 @@ import classes from "./Header.module.css";
 import MyButton from "../UI/MyButton";
 import MyInput from "../UI/MyInput";
 
-const Header = () => {
-    const [searchQuery, setSearchQuery] = useState('')
+const Header = ({value, onChange}) => {
     return (
         <div className={classes.header}>
             <MyInput
+                value={value}
+                onChange={onChange}
                 className={classes.search_bar}
             />
             {/*    Links*/}

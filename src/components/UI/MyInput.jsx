@@ -8,9 +8,6 @@ const MyInput = React.forwardRef((props, ref) => {
             className={props.className}
             placeholder="Search for breeds by name"
             {...props}
-
-            // value={searchQuery}
-            // onChange={e => setSearchQuery(e.target.value)}
         />
     );
 });
