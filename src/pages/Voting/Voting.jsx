@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import classes from './Voting.module.css'
-import Header from "../components/Header/Header";
-import ReactionList from "../components/ReactionList/ReactionList";
-import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
-import DogService from "../API/DogService";
-import Loader from "../components/UI/Loader/Loader";
-import BreedsList from "../components/BreedsList/BreedsList";
+import Header from "../../components/Header/Header";
+import ReactionList from "../../components/ReactionList/ReactionList";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import DogService from "../../API/DogService";
+import Loader from "../../components/UI/Loader/Loader";
 
 const Voting = () => {
     const [dog, setDog] = useState([]);
@@ -33,7 +32,7 @@ const Voting = () => {
 
     if(!dog.length) {
         return(
-            <img src={require('../assets/not-found-image.png')} alt='not found'/>
+            <img src={require('../../assets/not-found-image.png')} alt='not found'/>
         )
     }
 
@@ -51,15 +50,15 @@ const Voting = () => {
                     <div className={classes.reaction_group_btn}>
                         <img
                             className={[classes.reaction_btn, classes.btn_smiley].join(' ')}
-                            src={require("../assets/smiley-white.png")} alt="good smiley"
+                            src={require("../../assets/smiley-white.png")} alt="good smiley"
                         />
                         <img
                             className={[classes.reaction_btn, classes.btn_heart].join(' ')}
-                            src={require("../assets/heart-white.png")} alt="heart"
+                            src={require("../../assets/heart-white.png")} alt="heart"
                         />
                         <img
                             className={[classes.reaction_btn, classes.btn_bad_smiley].join(' ')}
-                            src={require("../assets/bad-smiley-white.png")} alt="bad smiley"
+                            src={require("../../assets/bad-smiley-white.png")} alt="bad smiley"
                         />
                     </div>
                 </div>

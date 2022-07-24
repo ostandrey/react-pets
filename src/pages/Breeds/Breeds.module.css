@@ -48,7 +48,7 @@
     align-items: center;
 }
 
-/*.grid_container > div {*/
-/*    background-color: #C4C4C4;*/
-/*    border-radius: 20px;*/
-/*}*/
+.grid_container > div {
+    background-color: #C4C4C4;
+    border-radius: 20px;
+}

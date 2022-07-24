@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import classes from "./Gallery.module.css";
-import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
-import MyButton from "../components/UI/MyButton";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import MyButton from "../../components/UI/MyButton";
 
 const Gallery = () => {
     return (
@@ -12,7 +12,7 @@ const Gallery = () => {
                 <div className={classes.control_panel}>
                     <Breadcrumb/>
                     <MyButton className={classes.upload_btn}>
-                        <img src={require('../assets/upload.png')} alt="upload"/>
+                        <img src={require('../../assets/upload.png')} alt="upload"/>
                         Upload
                     </MyButton>
                 </div>

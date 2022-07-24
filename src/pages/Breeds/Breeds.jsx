@@ -1,11 +1,11 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import classes from "./Breeds.module.css";
-import Breadcrumb from "../components/Breadcrumb/Breadcrmb";
-import DogService from "../API/DogService";
-import BreedsList from "../components/BreedsList/BreedsList";
-import MyButton from "../components/UI/MyButton";
-import Loader from "../components/UI/Loader/Loader";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import DogService from "../../API/DogService";
+import BreedsList from "../../components/BreedsList/BreedsList";
+import MyButton from "../../components/UI/MyButton";
+import Loader from "../../components/UI/Loader/Loader";
 
 const Breeds = () => {
     const [dogs, setDogs] = useState([]);
@@ -17,7 +17,9 @@ const Breeds = () => {
 
     useEffect(() => {
         fetchDogs();
-        fetchDogsByName(selectedDogs);
+        if(selectedDogs) {
+            fetchDogsByName(selectedDogs);
+        }
     }, [selectedDogs])
 
     async function fetchDogs() {
@@ -33,6 +35,7 @@ const Breeds = () => {
         if(selectedDogs === 'All dogs') {
             dogs = await DogService.getAllDogs();
         }
+        console.log(dogs)
         setFilteredDogs(dogs.data);
         setIsDogsLoading(false);
     }
@@ -50,12 +53,12 @@ const Breeds = () => {
             });
         }
 
-        return filteredDogs;
-    }, [filteredDogs, order]);
+        return dogs;
+    }, [dogs, order]);
 
-    // const sortedAndSelectedDogs = useMemo(() => {
-    //     return sortedDogs.filter(dog => dog.name.toLowerCase().includes(searchQuery.toLowerCase()))
-    // }, [searchQuery, sortedDogs])
+    // const searchedDogs = useMemo(() => {
+    //     return dogs.filter(dog => dog.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    // }, [searchQuery, dogs])
 
     return (
         <div>
@@ -86,14 +89,14 @@ const Breeds = () => {
                     <MyButton className={classes.sorting_btn}>
                         <img
                             onClick={() => setOrder('DSC')}
-                            src={require('../assets/ascending.png')}
+                            src={require('../../assets/ascending.png')}
                             alt="ascending"
                         />
                     </MyButton>
                     <MyButton className={classes.sorting_btn}>
                         <img
                             onClick={() => setOrder('ASC')}
-                            src={require('../assets/descending.png')}
+                            src={require('../../assets/descending.png')}
                             alt="descending"
                         />
                     </MyButton>

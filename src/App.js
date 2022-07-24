@@ -1,10 +1,10 @@
 import "./styles/App.css";
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
-import Voting from "./pages/Voting";
-import Breeds from "./pages/Breeds";
-import Gallery from "./pages/Gallery";
+import Voting from "./pages/Voting/Voting";
+import Breeds from "./pages/Breeds/Breeds";
+import Gallery from "./pages/Gallery/Gallery";
 
 
 function App() {
