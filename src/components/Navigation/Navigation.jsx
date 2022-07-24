@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 const Navigation = () => {
     return (
         <div className={classes.container}>
-            <header>
+            <Link to='/home'>
                 <img src={require("../../assets/Logo.png")} alt="Logo"/>
-            </header>
+            </Link>
             <section className={classes.title_container}>
                 <h1 className={classes.title}>Hi intern!</h1>
                 <h3 className={classes.subtitle}>Welcome to MI 2022 Front-end test</h3>

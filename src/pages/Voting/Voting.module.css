@@ -13,6 +13,16 @@
 .content {
     position: relative;
     margin-top: 20px;
+    width: 640px;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+.content_image {
+    max-width: 100%;
+    height: inherit;
+    border-radius: 20px;
 }
 
 .reaction_group_btn {
