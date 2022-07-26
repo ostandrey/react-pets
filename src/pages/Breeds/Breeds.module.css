@@ -8,7 +8,7 @@
 
 .control_panel {
     display: flex;
-    gap: 10px;
+    gap: 9px;
 }
 
 .select {
@@ -37,15 +37,19 @@
     background: #F8F8F7;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .grid_container {
     display: grid;
-    grid-template-rows: repeat(3, 1fr) 0;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px;
+    grid-template-areas:
+    "div1 div2 div3"
+    "div1 div5 div5"
+    "div4 div5 div5";
     margin-top: 20px;
-    justify-content: center;
-    align-items: center;
 }
 
 .grid_container > div {
