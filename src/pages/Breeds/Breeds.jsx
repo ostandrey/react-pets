@@ -16,16 +16,17 @@ const Breeds = () => {
     const [isDogsLoading, setIsDogsLoading] = useState(false);
 
     useEffect(() => {
-        fetchDogs();
-        if(selectedDogs) {
-            fetchDogsByName(selectedDogs);
+        if(!selectedDogs) {
+            fetchDogs();
         }
+        fetchDogsByName(selectedDogs);
     }, [selectedDogs])
 
     async function fetchDogs() {
         setIsDogsLoading(true);
         const dogs = await DogService.getAllDogs();
         setDogs(dogs.data);
+        setFilteredDogs(dogs.data);
         setIsDogsLoading(false);
     }
 
@@ -35,20 +36,19 @@ const Breeds = () => {
         if(selectedDogs === 'All dogs') {
             dogs = await DogService.getAllDogs();
         }
-        console.log(dogs)
-        setFilteredDogs(dogs.data);
+        setDogs(dogs.data);
         setIsDogsLoading(false);
     }
 
     const sortedAndFilteredDogs = useMemo(() => {
         if(order === 'ASC') {
-            return [...filteredDogs].sort((a, b) => {
+            return [...dogs].sort((a, b) => {
                 return a["name"] > b["name"] ? 1 : -1
             });
         }
 
         if(order === 'DSC') {
-            return [...filteredDogs].sort((a, b) => {
+            return [...dogs].sort((a, b) => {
                 return a["name"] > b["name"] ? -1 : 1
             });
         }
@@ -67,47 +67,46 @@ const Breeds = () => {
                 onChange={e => setSearchQuery(e.target.value)}
             />
             <section className={classes.content_wrapper}>
-                <div className={classes.control_panel}>
-                    <Breadcrumb/>
-                    <select
-                        value={selectedDogs}
-                        onChange={e => setSelectedDogs(e.target.value)}
-                        className={classes.select}>
-                        <option value="All dogs">All dogs</option>
-                        {
-                            dogs.map((dogName) =>
-                                <option value={dogName.name}>{dogName.name}</option>
-                            )
-                        }
-                    </select>
-                    <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
-                        <option value="5">Limit: 5</option>
-                        <option value="10">Limit: 10</option>
-                        <option value="15">Limit: 15</option>
-                        <option value="20">Limit: 20</option>
-                    </select>
-                    <MyButton className={classes.sorting_btn}>
-                        <img
-                            onClick={() => setOrder('DSC')}
-                            src={require('../../assets/ascending.png')}
-                            alt="ascending"
-                        />
-                    </MyButton>
-                    <MyButton className={classes.sorting_btn}>
-                        <img
-                            onClick={() => setOrder('ASC')}
-                            src={require('../../assets/descending.png')}
-                            alt="descending"
-                        />
-                    </MyButton>
-                </div>
-                <div className={classes.grid_container}>
-                    {
-                        isDogsLoading
-                            ? <Loader/>
-                            : sortedAndFilteredDogs && <BreedsList dogs={sortedAndFilteredDogs}/>
-                    }
-                </div>
+                {isDogsLoading
+                    ? <Loader/>
+                    : <>
+                        <div className={classes.control_panel}>
+                            <Breadcrumb/>
+                            <select
+                                value={selectedDogs}
+                                onChange={e => setSelectedDogs(e.target.value)}
+                                className={classes.select}>
+                                <option value="All dogs">All dogs</option>
+                                {
+                                    filteredDogs && filteredDogs.map((dogName) =>
+                                        <option value={dogName.name}>{dogName.name}</option>
+                                    )
+                                }
+                            </select>
+                            <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
+                                <option value="5">Limit: 5</option>
+                                <option value="10">Limit: 10</option>
+                                <option value="15">Limit: 15</option>
+                                <option value="20">Limit: 20</option>
+                            </select>
+                            <MyButton className={classes.sorting_btn} onClick={() => setOrder('DSC')}>
+                                <img
+                                    src={require('../../assets/ascending.png')}
+                                    alt="ascending"
+                                />
+                            </MyButton>
+                            <MyButton className={classes.sorting_btn} onClick={() => setOrder('ASC')}>
+                                <img
+                                    src={require('../../assets/descending.png')}
+                                    alt="descending"
+                                />
+                            </MyButton>
+                        </div>
+                        <div className={classes.grid_container}>
+                            <BreedsList dogs={sortedAndFilteredDogs}/>
+                        </div>
+                    </>
+                }
             </section>
         </div>
     );

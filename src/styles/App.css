@@ -4,15 +4,22 @@
     box-sizing: border-box;
 }
 
-html, body, #root {
+html {
     height: 100%;
+}
+body {
+    min-height: 100%;
+}
+
+#root {
+    height: 100vh;
 }
 
 .App {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    padding: 30px 30px 0;
+    padding: 30px;
     background: #F8F8F7;
-    /*height: inherit;*/
+    min-height: 100%;
 }

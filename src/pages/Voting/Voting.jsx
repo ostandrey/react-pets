@@ -13,7 +13,7 @@ const Voting = () => {
 
     useEffect(() => {
         fetchRandomDog();
-        fetchDogVotes();
+        // fetchDogVotes();
     }, [])
 
     async function fetchRandomDog() {
