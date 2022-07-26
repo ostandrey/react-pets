@@ -2,8 +2,9 @@ import React from 'react';
 import BreedItem from "../BreedItem/BreedItem";
 
 const BreedsList = ({dogs}) => {
+    console.log(dogs)
 
-    if(!dogs.length) {
+    if(!dogs) {
         return (
             <h1 style={{textAlign: 'center'}}>No posts not found!</h1>
         )
@@ -12,7 +13,7 @@ const BreedsList = ({dogs}) => {
     return (
         <>
             {
-                dogs.map (dog =>
+                dogs.map(dog =>
                     <BreedItem dog={dog} key={dog.id}/>
                 )
             }

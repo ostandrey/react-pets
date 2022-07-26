@@ -8,8 +8,8 @@ const Breadcrumb = () => {
 
     return (
         <div className={classes.breadcrumb_wrapper}>
-            <MyButton className={classes.btn_back}>
-                <img onClick={() => navigate(-1)} src={require("../../assets/arrow-back.png")} alt="Back"/>
+            <MyButton className={classes.btn_back} onClick={() => navigate(-1)}>
+                <img src={require("../../assets/arrow-back.png")} alt="Back"/>
             </MyButton>
             <span className={classes.breadcrumb}>
                 Voting
