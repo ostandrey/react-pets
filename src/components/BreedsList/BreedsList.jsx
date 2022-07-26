@@ -1,8 +1,8 @@
 import React from 'react';
 import BreedItem from "../BreedItem/BreedItem";
+import classes from "../BreedItem/BreedsItem.module.css";
 
 const BreedsList = ({dogs}) => {
-    console.log(dogs)
 
     if(!dogs) {
         return (
@@ -14,6 +14,10 @@ const BreedsList = ({dogs}) => {
         <>
             {
                 dogs.map(dog =>
+                    // <div className={classes.container}>
+                    //     {/*{dog.name}*/}
+                    //     <img src={require(dog.image.url)} alt="dog" className={classes.image}/>
+                    // </div>
                     <BreedItem dog={dog} key={dog.id}/>
                 )
             }

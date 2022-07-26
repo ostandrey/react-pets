@@ -16,10 +16,10 @@ const Breeds = () => {
     const [isDogsLoading, setIsDogsLoading] = useState(false);
 
     useEffect(() => {
-        if(!selectedDogs) {
-            fetchDogs();
+        fetchDogs();
+        if(selectedDogs !== '') {
+            fetchDogsByName(selectedDogs);
         }
-        fetchDogsByName(selectedDogs);
     }, [selectedDogs])
 
     async function fetchDogs() {
