@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Breadcrumb.module.css";
 import MyButton from "../UI/MyButton";
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate, useParams} from 'react-router-dom'
 
 const Breadcrumb = () => {
     const navigate = useNavigate();
+    const params = useLocation();
+    const [breadcrumb, setBreadcrumb] = useState([]);
+
+    useEffect(() =>
+        setBreadcrumb(params.pathname.split('/'))
+    , [params])
 
     return (
         <div className={classes.breadcrumb_wrapper}>
@@ -12,7 +18,7 @@ const Breadcrumb = () => {
                 <img src={require("../../assets/arrow-back.png")} alt="Back"/>
             </MyButton>
             <span className={classes.breadcrumb}>
-                Voting
+                {breadcrumb[1]}
             </span>
         </div>
     );
