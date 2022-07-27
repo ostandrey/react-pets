@@ -7,30 +7,30 @@ import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 
 const Voting = () => {
-    const [dog, setDog] = useState([]);
+    const [breed, setBreed] = useState([]);
     const [votes, setVotes] = useState([])
-    const [isDogsLoading, setIsDogsLoading] = useState(false);
+    const [isBreedsLoading, setIsBreedsLoading] = useState(false);
 
     useEffect(() => {
-        fetchRandomDog();
+        fetchRandomBreed();
         // fetchDogVotes();
     }, [])
 
-    async function fetchRandomDog() {
-        setIsDogsLoading(true);
-        const dog = await DogService.getDogRandom();
-        setDog(dog.data);
-        setIsDogsLoading(false);
+    async function fetchRandomBreed() {
+        setIsBreedsLoading(true);
+        const breed = await DogService.getBreedRandom();
+        setBreed(breed.data);
+        setIsBreedsLoading(false);
     }
 
-    async function fetchDogVotes() {
-        setIsDogsLoading(true);
-        const votes = await DogService.getDogVotes();
+    async function fetchBreedVotes() {
+        setIsBreedsLoading(true);
+        const votes = await DogService.getBreedVotes();
         setVotes(votes.data);
-        setIsDogsLoading(false);
+        setIsBreedsLoading(false);
     }
 
-    if(!dog.length) {
+    if(!breed.length) {
         return(
             <img src={require('../../assets/not-found-image.png')} alt='not found'/>
         )
@@ -43,9 +43,9 @@ const Voting = () => {
                 <Breadcrumb/>
                 <div className={classes.content}>
                     {
-                        isDogsLoading
+                        isBreedsLoading
                             ? <Loader/>
-                            : <img src={dog[0].url} alt='dog' className={classes.content_image}/>
+                            : <img src={breed[0].url} alt='dog' className={classes.content_image}/>
                     }
                     <div className={classes.reaction_group_btn}>
                         <img

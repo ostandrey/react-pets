@@ -1,10 +1,9 @@
 import React from 'react';
 import BreedItem from "../BreedItem/BreedItem";
-import classes from "../BreedItem/BreedsItem.module.css";
 
-const BreedsList = ({dogs}) => {
+const BreedsList = ({breeds}) => {
 
-    if(!dogs) {
+    if(!breeds) {
         return (
             <h1 style={{textAlign: 'center'}}>No posts not found!</h1>
         )
@@ -13,12 +12,8 @@ const BreedsList = ({dogs}) => {
     return (
         <>
             {
-                dogs.map(dog =>
-                    // <div className={classes.container}>
-                    //     {/*{dog.name}*/}
-                    //     <img src={require(dog.image.url)} alt="dog" className={classes.image}/>
-                    // </div>
-                    <BreedItem dog={dog} key={dog.id}/>
+                breeds.map(breed =>
+                    <BreedItem breed={breed} key={breed.id}/>
                 )
             }
         </>

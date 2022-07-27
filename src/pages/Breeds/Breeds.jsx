@@ -8,53 +8,45 @@ import MyButton from "../../components/UI/MyButton";
 import Loader from "../../components/UI/Loader/Loader";
 
 const Breeds = () => {
-    const [dogs, setDogs] = useState([]);
-    const [selectedDogs, setSelectedDogs] = useState('');
-    const [filteredDogs, setFilteredDogs] = useState('');
+    const [breeds, setBreeds] = useState([]);
+    const [selectedBreeds, setSelectedBreeds] = useState('');
     const [order, setOrder] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [isDogsLoading, setIsDogsLoading] = useState(false);
+    const [isBreedsLoading, setIsBreedsLoading] = useState(false);
 
     useEffect(() => {
-        fetchDogs();
-        if(selectedDogs !== '') {
-            fetchDogsByName(selectedDogs);
-        }
-    }, [selectedDogs])
+        fetchBreeds();
+    }, [])
 
-    async function fetchDogs() {
-        setIsDogsLoading(true);
-        const dogs = await DogService.getAllDogs();
-        setDogs(dogs.data);
-        setFilteredDogs(dogs.data);
-        setIsDogsLoading(false);
+    async function fetchBreeds() {
+        setIsBreedsLoading(true);
+        const breeds = await DogService.getAllBreeds();
+        setBreeds(breeds.data);
+        setIsBreedsLoading(false);
     }
 
-    async function fetchDogsByName(selectedDogs) {
-        setIsDogsLoading(true);
-        let dogs = await DogService.getDogsByName(selectedDogs);
-        if(selectedDogs === 'All dogs') {
-            dogs = await DogService.getAllDogs();
+    const filteredBreeds = useMemo(() => {
+        if(selectedBreeds !== "All dogs") {
+            return breeds.filter(breed => breed.name.toLowerCase().includes(selectedBreeds.toLowerCase()));
         }
-        setDogs(dogs.data);
-        setIsDogsLoading(false);
-    }
+        return breeds
+    }, [selectedBreeds, breeds])
 
-    const sortedAndFilteredDogs = useMemo(() => {
+    const sortedAndFilteredBreeds = useMemo(() => {
         if(order === 'ASC') {
-            return [...dogs].sort((a, b) => {
+            return [...filteredBreeds].sort((a, b) => {
                 return a["name"] > b["name"] ? 1 : -1
             });
         }
 
         if(order === 'DSC') {
-            return [...dogs].sort((a, b) => {
+            return [...filteredBreeds].sort((a, b) => {
                 return a["name"] > b["name"] ? -1 : 1
             });
         }
 
-        return dogs;
-    }, [dogs, order]);
+        return filteredBreeds;
+    }, [filteredBreeds, order]);
 
     // const searchedDogs = useMemo(() => {
     //     return dogs.filter(dog => dog.name.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -67,19 +59,19 @@ const Breeds = () => {
                 onChange={e => setSearchQuery(e.target.value)}
             />
             <section className={classes.content_wrapper}>
-                {isDogsLoading
+                {isBreedsLoading
                     ? <Loader/>
                     : <>
                         <div className={classes.control_panel}>
                             <Breadcrumb/>
                             <select
-                                value={selectedDogs}
-                                onChange={e => setSelectedDogs(e.target.value)}
+                                value={selectedBreeds}
+                                onChange={e => setSelectedBreeds(e.target.value)}
                                 className={classes.select}>
                                 <option value="All dogs">All dogs</option>
                                 {
-                                    filteredDogs && filteredDogs.map((dogName) =>
-                                        <option value={dogName.name}>{dogName.name}</option>
+                                    breeds && breeds.map((breedName) =>
+                                        <option value={breedName.name}>{breedName.name}</option>
                                     )
                                 }
                             </select>
@@ -103,7 +95,7 @@ const Breeds = () => {
                             </MyButton>
                         </div>
                         <div className={classes.grid_container}>
-                            <BreedsList dogs={sortedAndFilteredDogs}/>
+                            <BreedsList breeds={sortedAndFilteredBreeds}/>
                         </div>
                     </>
                 }

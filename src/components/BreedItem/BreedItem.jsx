@@ -1,14 +1,20 @@
 import React from 'react';
 import classes from "./BreedsItem.module.css";
+import {useNavigate} from "react-router-dom";
 
-const BreedItem = ({dog, ...props}) => {
+const BreedItem = ({breed, ...props}) => {
+    const router = useNavigate();
+
     return (
-        <div className={classes.container}>
-            {/*{dog.name}*/}
+        <div className={classes.container} >
             {
-                dog && <img src={`${dog.image.url}`} alt="dog" className={classes.image}/>
+                breed && <img
+                    src={`${breed.image.url}`}
+                    alt="breed"
+                    className={classes.image}
+                    onClick={() => router(`/breeds/${breed.name}`)}
+                />
             }
-
         </div>
             // {/*<div className={classes.div2}></div>*/}
             // {/*<div className={classes.div3}></div>*/}
