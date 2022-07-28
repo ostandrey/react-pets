@@ -14,9 +14,6 @@ const BreedIdPage = () => {
 
     useEffect(() => {
         fetchBreedsByName();
-        // if(breed !== null) {
-        //     fetchImageById();
-        // }
     }, [])
 
 
