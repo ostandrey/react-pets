@@ -23,11 +23,10 @@ const BreedItem = ({breed, ...props}) => {
                     src={`${breed.image.url}`}
                     alt="breed"
                     className={classes.image}
-                    onClick={() => router(`/breeds/${breed.name}`)}
                 />
             }
             {isHovering && (
-                <div className={classes.container_hover}>
+                <div className={classes.container_hover} onClick={() => router(`/breeds/${breed.name}`)}>
                     <div className={classes.name_hover}>{breed.name}</div>
                 </div>
             )}

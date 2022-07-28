@@ -61,28 +61,30 @@ const BreedIdPage = () => {
                             {
                                 breedImage && <img src={`${breedImage.url}`} alt="breed" className={classes.breed_image}/>
                             }
-                            <div className={classes.breed_info}>
-                                <div>
-                                    <h1>{breed.name}</h1>
-                                    <h3>{breed.bred_for}</h3>
+                            <div className={classes.breed_container}>
+                                <div className={classes.breed_header}>
+                                    <h1 className={classes.breed_title}>{breed.name}</h1>
+                                    <h3 className={classes.breed_subtitle}>{breed.bred_for}</h3>
                                 </div>
-                                <div>
-                                    <table>
-                                        <td>
-                                            <tr>Temperament: {breed.temperament}</tr>
-                                        </td>
-                                        <td>
-                                            {
-                                                breed.origin ? <tr>Origin: {breed.origin}</tr> : <tr>Origin: -</tr>
-                                            }
-                                            <tr>
-                                                Weight: {breed.weight.metric}
-                                            </tr>
-                                            <tr>
-                                                Life span: {breed.life_span}
-                                            </tr>
-                                        </td>
-                                    </table>
+                                <div className={classes.breed_info}>
+                                    <div>
+                                        <span>
+                                            Temperament:<br/><p className={classes.breed_text}> {breed.temperament}</p>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        {
+                                            breed.origin ? <span>Origin: <p className={classes.breed_text}> {breed.origin}</p></span> : <p>Origin: -</p>
+                                        }
+                                        <br/>
+                                        <span>
+                                            Weight: <p className={classes.breed_text}> {breed.weight.metric}</p>
+                                        </span>
+                                        <br/>
+                                        <span>
+                                            Life span: <p className={classes.breed_text}> {breed.life_span}</p>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
