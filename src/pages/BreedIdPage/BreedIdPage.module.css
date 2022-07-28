@@ -28,14 +28,73 @@
     color: #FFFFFF;
 }
 
-.breed_info {
+.breed_container {
+    margin-top: 50px;
     border: 2px solid #FBE0DC;
     border-radius: 20px;
+    position: relative;
 }
 
 .breed_image {
+    display: flex;
     max-height: 360px;
-    width: 100%;
+    max-width: 100%;
     border-radius: 20px;
-    margin-top: 20px;
+    margin: 20px auto;
+}
+
+.breed_header {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 20px;
+    top: -30px;
+    right: 30%;
+    text-align: center;
+}
+
+.breed_title {
+
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 52px;
+
+    color: #1D1D1D;
+}
+
+.breed_subtitle {
+    font-family: 'Jost',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+
+    color: #8C8C8C;
+}
+
+.breed_info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    margin: 75px 60px 40px;
+
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+
+    color: #1D1D1D;
+}
+
+.breed_info span {
+    width: 100%;
+}
+
+.breed_text {
+    color: #8C8C8C;
+    display: inline-block;
 }
