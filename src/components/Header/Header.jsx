@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classes from "./Header.module.css";
-import MyButton from "../UI/MyButton";
 import MyInput from "../UI/MyInput";
+import {Link} from "react-router-dom";
 
 const Header = ({value, onChange}) => {
     return (
@@ -11,16 +11,15 @@ const Header = ({value, onChange}) => {
                 onChange={onChange}
                 className={classes.search_bar}
             />
-            {/*    Links*/}
-            <MyButton className={classes.reaction_link}>
+            <Link to="/likes" className={classes.reaction_link}>
                 <img src={require("../../assets/smiley.png")} alt="good smiley"/>
-            </MyButton>
-            <MyButton className={classes.reaction_link}>
+            </Link>
+            <Link to="/favourites" className={classes.reaction_link}>
                 <img src={require("../../assets/heart.png")} alt="heart"/>
-            </MyButton>
-            <MyButton className={classes.reaction_link}>
+            </Link>
+            <Link to="/dislikes" className={classes.reaction_link}>
                 <img src={require("../../assets/bad-smiley.png")} alt="bad smiley"/>
-            </MyButton>
+            </Link>
         </div>
     );
 };
