@@ -1,5 +1,4 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import Header from "../../components/Header/Header";
 import classes from "./Breeds.module.css";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
@@ -52,10 +51,10 @@ const Breeds = () => {
 
     return (
         <div>
-            <Header
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-            />
+            {/*<Header*/}
+            {/*    value={searchQuery}*/}
+            {/*    onChange={e => setSearchQuery(e.target.value)}*/}
+            {/*/>*/}
             <section className={classes.content_wrapper}>
                 {isBreedsLoading
                     ? <Loader/>

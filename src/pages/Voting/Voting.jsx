@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import classes from './Voting.module.css'
-import Header from "../../components/Header/Header";
 import ReactionList from "../../components/ReactionList/ReactionList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
@@ -36,7 +35,6 @@ const Voting = () => {
 
     return (
         <div className={classes.container}>
-            <Header/>
             <section className={classes.content_wrapper}>
                 <Breadcrumb/>
                 <div className={classes.content}>
