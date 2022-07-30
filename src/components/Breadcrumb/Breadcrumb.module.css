@@ -12,6 +12,8 @@
 }
 
 .breadcrumb {
+    display: flex;
+    align-items: center;
     background: #FF868E;
     border-radius: 10px;
     padding: 5px 30px;
