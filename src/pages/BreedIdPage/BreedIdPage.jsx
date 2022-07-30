@@ -5,12 +5,22 @@ import Header from "../../components/Header/Header";
 import Loader from "../../components/UI/Loader/Loader";
 import classes from "./BreedIdPage.module.css";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import {useFetching} from "../../hooks/useFetching";
 
 const BreedIdPage = () => {
     const params = useParams();
     const [breed, setBreed] = useState(null);
     const [breedImage, setImage] = useState(null);
-    const [isBreedsLoading, setIsBreedsLoading] = useState(false);
+
+    const [fetchBreedsByName, isBreedsByNameLoading, breedsByNameError] = useFetching(async () => {
+        let breed = await DogService.getBreedsByName(params.name);
+        setBreed(...breed.data);
+    });
+
+    const [fetchImageById, isBreedImageLoading, breedImageError] = useFetching(async () => {
+        let breedImage = await DogService.getImageById(breed.reference_image_id);
+        setImage(breedImage.data);
+    });
 
     useEffect(() => {
         fetchBreedsByName();
@@ -23,20 +33,6 @@ const BreedIdPage = () => {
         }
     }, [breed])
 
-    async function fetchBreedsByName() {
-        setIsBreedsLoading(true);
-        let breed = await DogService.getBreedsByName(params.name);
-        setBreed(...breed.data);
-        setIsBreedsLoading(false);
-    }
-
-    async function fetchImageById() {
-        setIsBreedsLoading(true);
-        let breedImage = await DogService.getImageById(breed.reference_image_id);
-        setImage(breedImage.data);
-        setIsBreedsLoading(false);
-    }
-
     if(!breed) {
         return (
             <h1 style={{textAlign: 'center'}}>No breed not found!</h1>
@@ -47,7 +43,10 @@ const BreedIdPage = () => {
         <div>
             <Header/>
             <section className={classes.content_wrapper}>
-                {isBreedsLoading
+                {
+                    breedsByNameError && <h1>Error (</h1>
+                }
+                {isBreedsByNameLoading
                     ? <Loader/>
                     : <>
                         <div className={classes.control_panel}>
@@ -56,7 +55,12 @@ const BreedIdPage = () => {
                         </div>
                         <div>
                             {
-                                breedImage && <img src={`${breedImage.url}`} alt="breed" className={classes.breed_image}/>
+                                breedImageError && <h1>Error (</h1>
+                            }
+                            {
+                                isBreedImageLoading
+                                    ? <Loader/>
+                                    : breedImage && <img src={`${breedImage.url}`} alt="breed" className={classes.breed_image}/>
                             }
                             <div className={classes.breed_container}>
                                 <div className={classes.breed_header}>

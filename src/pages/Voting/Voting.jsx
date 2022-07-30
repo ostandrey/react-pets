@@ -5,30 +5,28 @@ import ReactionList from "../../components/ReactionList/ReactionList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
+import {useFetching} from "../../hooks/useFetching";
 
 const Voting = () => {
-    const [breed, setBreed] = useState([]);
-    const [votes, setVotes] = useState([])
-    const [isBreedsLoading, setIsBreedsLoading] = useState(false);
+    const [breed, setRandomBreed] = useState([]);
+    // const [votes, setVotes] = useState([]);
+
+    const [fetchRandomBreed, isRandomBreedLoading, randomBreedError] = useFetching(async () => {
+        const randomBreed = await DogService.getRandomBreed();
+        setRandomBreed(randomBreed.data);
+    });
 
     useEffect(() => {
         fetchRandomBreed();
         // fetchDogVotes();
     }, [])
 
-    async function fetchRandomBreed() {
-        setIsBreedsLoading(true);
-        const breed = await DogService.getBreedRandom();
-        setBreed(breed.data);
-        setIsBreedsLoading(false);
-    }
-
-    async function fetchBreedVotes() {
-        setIsBreedsLoading(true);
-        const votes = await DogService.getBreedVotes();
-        setVotes(votes.data);
-        setIsBreedsLoading(false);
-    }
+    // async function fetchBreedVotes() {
+    //     setIsBreedsLoading(true);
+    //     const votes = await DogService.getBreedVotes();
+    //     setVotes(votes.data);
+    //     setIsBreedsLoading(false);
+    // }
 
     if(!breed.length) {
         return(
@@ -43,7 +41,10 @@ const Voting = () => {
                 <Breadcrumb/>
                 <div className={classes.content}>
                     {
-                        isBreedsLoading
+                        randomBreedError && <h1>Error(</h1>
+                    }
+                    {
+                        isRandomBreedLoading
                             ? <Loader/>
                             : <img src={breed[0].url} alt='dog' className={classes.content_image}/>
                     }
