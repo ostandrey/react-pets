@@ -28,7 +28,7 @@ export default class DogService {
         }
     }
 
-    static async getBreedRandom() {
+    static async getRandomBreed() {
         try {
             const response = await axios.get(`https://api.thedogapi.com/v1/images/search`)
             return response;

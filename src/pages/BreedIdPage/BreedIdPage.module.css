@@ -50,8 +50,13 @@
     background: #FFFFFF;
     border-radius: 20px;
     top: -30px;
-    right: 30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+    padding: 5px 40px;
+    width: fit-content;
 }
 
 .breed_title {

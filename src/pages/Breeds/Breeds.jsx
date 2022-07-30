@@ -6,24 +6,22 @@ import DogService from "../../API/DogService";
 import BreedsList from "../../components/BreedsList/BreedsList";
 import MyButton from "../../components/UI/MyButton";
 import Loader from "../../components/UI/Loader/Loader";
+import {useFetching} from '../../hooks/useFetching'
 
 const Breeds = () => {
     const [breeds, setBreeds] = useState([]);
     const [selectedBreeds, setSelectedBreeds] = useState('');
     const [order, setOrder] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [isBreedsLoading, setIsBreedsLoading] = useState(false);
+
+    const [fetchBreeds, isBreedsLoading, breedError] = useFetching(async () => {
+        const breeds = await DogService.getAllBreeds();
+        setBreeds(breeds.data);
+    });
 
     useEffect(() => {
         fetchBreeds();
     }, [])
-
-    async function fetchBreeds() {
-        setIsBreedsLoading(true);
-        const breeds = await DogService.getAllBreeds();
-        setBreeds(breeds.data);
-        setIsBreedsLoading(false);
-    }
 
     const filteredBreeds = useMemo(() => {
         if(selectedBreeds !== "All dogs") {
@@ -95,6 +93,9 @@ const Breeds = () => {
                             </MyButton>
                         </div>
                         <div className={classes.grid_container}>
+                            {
+                                breedError && <h1>Error(</h1>
+                            }
                             <BreedsList breeds={sortedAndFilteredBreeds}/>
                         </div>
                     </>
