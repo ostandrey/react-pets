@@ -15,7 +15,6 @@ function App() {
                 <Header/>
                 <AppRouter/>
             </div>
-
         </Router>
     </div>
   );

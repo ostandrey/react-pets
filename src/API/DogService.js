@@ -1,9 +1,15 @@
 import axios from 'axios';
 
 export default class DogService {
-    static async getAllBreeds() {
+    static async getAllBreeds(limit, page) {
         try {
-            const response = await axios.get('https://api.thedogapi.com/v1/breeds')
+            const response = await axios.get('https://api.thedogapi.com/v1/breeds',
+                {
+                params: {
+                    limit: limit,
+                    page: page - 1
+                }}
+            )
             return response;
         } catch (e) {
             console.log(e)

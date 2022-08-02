@@ -45,6 +45,8 @@
     text-align: center;
     position: relative;
     cursor: pointer;
+    background-color: #C4C4C4;
+    border-radius: 20px;
 }
 
 .image {
