@@ -6,10 +6,10 @@ import {useLocation, useNavigate, useParams} from 'react-router-dom'
 const Breadcrumb = () => {
     const navigate = useNavigate();
     const params = useLocation();
-    const [breadcrumb, setBreadcrumb] = useState([]);
+    const [breadcrumb, setBreadcrumb] = useState('');
 
     useEffect(() =>
-        setBreadcrumb(params.pathname.split('/'))
+        setBreadcrumb(params.pathname.split('/')[1])
     , [params])
 
     return (
@@ -18,7 +18,7 @@ const Breadcrumb = () => {
                 <img src={require("../../assets/arrow-back.png")} alt="Back"/>
             </MyButton>
             <span className={classes.breadcrumb}>
-                {breadcrumb[1]}
+                {breadcrumb}
             </span>
         </div>
     );

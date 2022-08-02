@@ -14,7 +14,7 @@ const Navigation = () => {
             </section>
             <section className={classes.links_container}>
                 <h3 className={classes.title_sm}>Lets start using The Cat API</h3>
-                <div className={classes.nav_buttons}>
+                <nav className={classes.nav_buttons}>
                     <Link to='/voting' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_voting].join(' ')}>
                             <img src={require("../../assets/vote-table.png")} alt="vote-table"/>
@@ -45,7 +45,7 @@ const Navigation = () => {
                             </h2>
                         </div>
                     </Link>
-                </div>
+                </nav>
             </section>
         </div>
     );
