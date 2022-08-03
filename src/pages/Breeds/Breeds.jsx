@@ -18,7 +18,6 @@ const Breeds = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
-
     // const [searchQuery, setSearchQuery] = useState('');
 
     const [fetchBreeds, isBreedsLoading, breedError] = useFetching(async (limit, page) => {
@@ -36,7 +35,7 @@ const Breeds = () => {
     useEffect(() => {
         fetchBreeds(limit, page);
         fetchBreedNames();
-    }, [])
+    }, [limit, page])
 
     const filteredBreeds = useMemo(() => {
         if(selectedBreeds === "" || selectedBreeds === "All dogs") {
@@ -63,7 +62,6 @@ const Breeds = () => {
 
     const changePage = (page) => {
         setPage(page)
-        fetchBreeds(limit, page)
     }
 
     // const searchedDogs = useMemo(() => {
@@ -90,11 +88,15 @@ const Breeds = () => {
                             )
                         }
                     </select>
-                    <select name="" id="" className={[classes.select, classes.select_limit].join(' ')}>
-                        <option value="5">Limit: 5</option>
-                        <option value="10">Limit: 10</option>
-                        <option value="15">Limit: 15</option>
-                        <option value="20">Limit: 20</option>
+                    <select
+                        className={[classes.select, classes.select_limit].join(' ')}
+                        value={limit}
+                        onChange={e => setLimit(e.target.value)}
+                    >
+                        <option value={5}>Limit: 5</option>
+                        <option value={10}>Limit: 10</option>
+                        <option value={15}>Limit: 15</option>
+                        <option value={20}>Limit: 20</option>
                     </select>
                     <MyButton className={classes.sorting_btn} onClick={() => setOrder('DSC')}>
                         <img

@@ -3,7 +3,6 @@ import "./styles/App.css";
 import {BrowserRouter as Router} from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import AppRouter from "./components/AppRouter";
-import Header from "./components/Header/Header";
 
 
 function App() {
@@ -11,10 +10,7 @@ function App() {
     <div className="App">
         <Router>
             <Navigation/>
-            <div>
-                <Header/>
-                <AppRouter/>
-            </div>
+            <AppRouter/>
         </Router>
     </div>
   );
