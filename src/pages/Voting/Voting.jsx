@@ -5,10 +5,10 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import {useFetching} from "../../hooks/useFetching";
-import MyButton from "../../components/UI/MyButton";
 
 const Voting = () => {
     const [dog, setRandomDog] = useState([]);
+    const [votes, setVotes] = useState([]);
     const [imageId, setImageId] = useState('');
     const [voteValue, setVoteValue] = useState(null);
 
@@ -25,6 +25,11 @@ const Voting = () => {
         await DogService.createVote(imageId, voteValue);
     });
 
+    const [fetchVotes, isVotesLoading, votesError] = useFetching(async () => {
+        const votes = await DogService.getVotes();
+        setVotes(votes.data);
+    });
+
     const voteItem = (value, image_id) => {
         setImageId(image_id);
         switch (value) {
@@ -34,13 +39,17 @@ const Voting = () => {
             case 'dislike':
                 setVoteValue(2);
                 break;
+            case 'favourite':
+                setVoteValue(3);
+                break;
             default: return
         }
     }
 
     useEffect(() => {
         fetchRandomDog();
-        if(imageId && !voteValue) {
+        fetchVotes();
+        if(imageId && (voteValue !== 1 || voteValue !== 2)) {
             fetchFavourites()
         }
         if(imageId && voteValue) {
@@ -76,7 +85,7 @@ const Voting = () => {
                         <img
                             className={[classes.reaction_btn, classes.btn_heart].join(' ')}
                             src={require("../../assets/heart-white.png")} alt="heart"
-                            onClick={() => setImageId(dog[0].id)}
+                            onClick={() =>  voteItem('favourite', dog[0].id)}
                         />
                         <img
                             className={[classes.reaction_btn, classes.btn_bad_smiley].join(' ')}
@@ -85,7 +94,17 @@ const Voting = () => {
                         />
                     </div>
                 </div>
-                <ReactionList/>
+                {
+                    votesError && <h1>Error(</h1>
+                }
+                {
+                    isVotesLoading
+                    ? <Loader/>
+                        : <ReactionList
+                            votes={votes}
+                            voteValue={voteValue}
+                        />
+                }
             </section>
         </div>
     );

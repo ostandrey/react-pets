@@ -95,6 +95,18 @@ export default class DogService {
         }
     }
 
+    static async getVotes() {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
+                {
+                    headers
+                })
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     static async getSpecificVotes(value) {
         try {
             const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
