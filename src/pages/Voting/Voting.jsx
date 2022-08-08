@@ -7,27 +7,57 @@ import Loader from "../../components/UI/Loader/Loader";
 import {useFetching} from "../../hooks/useFetching";
 
 const Voting = () => {
-    const [breed, setRandomBreed] = useState([]);
-    // const [votes, setVotes] = useState([]);
+    const [dog, setRandomDog] = useState([]);
+    const [votes, setVotes] = useState([]);
+    const [imageId, setImageId] = useState('');
+    const [voteValue, setVoteValue] = useState(null);
 
-    const [fetchRandomBreed, isRandomBreedLoading, randomBreedError] = useFetching(async () => {
-        const randomBreed = await DogService.getRandomBreed();
-        setRandomBreed(randomBreed.data);
+    const [fetchRandomDog, isRandomDogLoading, randomDogError] = useFetching(async () => {
+        const randomDog = await DogService.getRandomBreed();
+        setRandomDog(randomDog.data);
     });
 
+    const [fetchFavourites, isFavouritesLoading, favouritesError] = useFetching(async () => {
+        await DogService.saveFavorite(imageId);
+    });
+
+    const [createVote, isVoteLoading, voteError] = useFetching(async () => {
+        await DogService.createVote(imageId, voteValue);
+    });
+
+    const [fetchVotes, isVotesLoading, votesError] = useFetching(async () => {
+        const votes = await DogService.getVotes();
+        setVotes(votes.data);
+    });
+
+    const voteItem = (value, image_id) => {
+        setImageId(image_id);
+        switch (value) {
+            case 'like':
+                setVoteValue(1);
+                break;
+            case 'dislike':
+                setVoteValue(2);
+                break;
+            case 'favourite':
+                setVoteValue(3);
+                break;
+            default: return
+        }
+    }
+
     useEffect(() => {
-        fetchRandomBreed();
-        // fetchDogVotes();
-    }, [])
+        fetchRandomDog();
+        fetchVotes();
+        if(imageId && (voteValue !== 1 || voteValue !== 2)) {
+            fetchFavourites()
+        }
+        if(imageId && voteValue) {
+            createVote()
+        }
+    }, [imageId, voteValue])
 
-    // async function fetchBreedVotes() {
-    //     setIsBreedsLoading(true);
-    //     const votes = await DogService.getBreedVotes();
-    //     setVotes(votes.data);
-    //     setIsBreedsLoading(false);
-    // }
-
-    if(!breed.length) {
+    if(!dog.length) {
         return(
             <img src={require('../../assets/not-found-image.png')} alt='not found'/>
         )
@@ -39,29 +69,42 @@ const Voting = () => {
                 <Breadcrumb/>
                 <div className={classes.content}>
                     {
-                        randomBreedError && <h1>Error(</h1>
+                        randomDogError && <h1>Error(</h1>
                     }
                     {
-                        isRandomBreedLoading
+                        isRandomDogLoading
                             ? <Loader/>
-                            : <img src={breed[0].url} alt='dog' className={classes.content_image}/>
+                            : <img src={dog[0].url} alt='dog' className={classes.content_image}/>
                     }
                     <div className={classes.reaction_group_btn}>
                         <img
                             className={[classes.reaction_btn, classes.btn_smiley].join(' ')}
                             src={require("../../assets/smiley-white.png")} alt="good smiley"
+                            onClick={() => voteItem('like', dog[0].id)}
                         />
                         <img
                             className={[classes.reaction_btn, classes.btn_heart].join(' ')}
                             src={require("../../assets/heart-white.png")} alt="heart"
+                            onClick={() =>  voteItem('favourite', dog[0].id)}
                         />
                         <img
                             className={[classes.reaction_btn, classes.btn_bad_smiley].join(' ')}
                             src={require("../../assets/bad-smiley-white.png")} alt="bad smiley"
+                            onClick={() => voteItem('dislike', dog[0].id)}
                         />
                     </div>
                 </div>
-                <ReactionList/>
+                {
+                    votesError && <h1>Error(</h1>
+                }
+                {
+                    isVotesLoading
+                    ? <Loader/>
+                        : <ReactionList
+                            votes={votes}
+                            voteValue={voteValue}
+                        />
+                }
             </section>
         </div>
     );

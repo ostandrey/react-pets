@@ -1,6 +1,11 @@
 import axios from 'axios';
 
+const headers = {
+    'x-api-key': process.env.REACT_APP_DOG_API_KEY
+}
+
 export default class DogService {
+
     static async getAllBreeds(limit, page) {
         try {
             const response = await axios.get('https://api.thedogapi.com/v1/breeds',
@@ -60,4 +65,79 @@ export default class DogService {
             console.log(e)
         }
     }
+
+    static async getFavorites() {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/favourites`, {
+                headers
+            })
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async saveFavorite(image_id) {
+        console.log(image_id)
+        try {
+            const response = await axios.post(`https://api.thedogapi.com/v1/favourites`,
+                {
+                    image_id: image_id,
+                    sub_id: "your-user-1234",
+                },
+                {
+                    headers
+                }
+            )
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async getVotes() {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
+                {
+                    headers
+                })
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async getSpecificVotes(value) {
+        try {
+            const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
+                {
+                    headers,
+                    params: value
+                })
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async createVote(image_id, value) {
+        console.log(image_id, value)
+        try {
+            const response = await axios.post(`https://api.thedogapi.com/v1/votes`,
+                {
+                    image_id: image_id,
+                    sub_id: "your-user-1234",
+                    value: value
+                },
+                {
+                    headers
+                }
+            )
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 }
