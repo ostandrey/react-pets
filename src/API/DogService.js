@@ -3,12 +3,13 @@ import axios from 'axios';
 const headers = {
     'x-api-key': process.env.REACT_APP_DOG_API_KEY
 }
+const apiUrl = 'https://api.thedogapi.com/v1/'
 
 export default class DogService {
 
     static async getAllBreeds(limit, page) {
         try {
-            const response = await axios.get('https://api.thedogapi.com/v1/breeds',
+            const response = await axios.get(apiUrl + '/breeds',
                 {
                 params: {
                     limit: limit,
@@ -23,16 +24,7 @@ export default class DogService {
 
     static async getBreedsByName(name) {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/breeds/search?name=${name}`)
-            return response;
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    static async getBreedById() {
-        try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/votes`)
+            const response = await axios.get(apiUrl + `/breeds/search?name=${name}`)
             return response;
         } catch (e) {
             console.log(e)
@@ -41,7 +33,7 @@ export default class DogService {
 
     static async getRandomBreed() {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/images/search`)
+            const response = await axios.get(apiUrl + `/images/search`)
             return response;
         } catch (e) {
             console.log(e)
@@ -50,16 +42,7 @@ export default class DogService {
 
     static async getImageById(image_id) {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/images/${image_id}`)
-            return response;
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    static async getBreedVotes() {
-        try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/votes`)
+            const response = await axios.get(apiUrl + `/images/${image_id}`)
             return response;
         } catch (e) {
             console.log(e)
@@ -68,7 +51,7 @@ export default class DogService {
 
     static async getFavorites() {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/favourites`, {
+            const response = await axios.get(apiUrl + `/favourites`, {
                 headers
             })
             return response;
@@ -80,7 +63,7 @@ export default class DogService {
     static async saveFavorite(image_id) {
         console.log(image_id)
         try {
-            const response = await axios.post(`https://api.thedogapi.com/v1/favourites`,
+            const response = await axios.post(apiUrl + `/favourites`,
                 {
                     image_id: image_id,
                     sub_id: "your-user-1234",
@@ -97,7 +80,7 @@ export default class DogService {
 
     static async getVotes() {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
+            const response = await axios.get(apiUrl + `/votes`,
                 {
                     headers
                 })
@@ -109,7 +92,7 @@ export default class DogService {
 
     static async getSpecificVotes(value) {
         try {
-            const response = await axios.get(`https://api.thedogapi.com/v1/votes`,
+            const response = await axios.get(apiUrl + `/votes`,
                 {
                     headers,
                     params: value
@@ -121,9 +104,8 @@ export default class DogService {
     }
 
     static async createVote(image_id, value) {
-        console.log(image_id, value)
         try {
-            const response = await axios.post(`https://api.thedogapi.com/v1/votes`,
+            const response = await axios.post(apiUrl + `/votes`,
                 {
                     image_id: image_id,
                     sub_id: "your-user-1234",
