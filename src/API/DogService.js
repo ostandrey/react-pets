@@ -3,11 +3,12 @@ import axios from 'axios';
 const headers = {
     'x-api-key': process.env.REACT_APP_DOG_API_KEY
 }
-const apiUrl = 'https://api.thedogapi.com/v1/'
+const apiUrl = 'https://api.thedogapi.com/v1'
 
 export default class DogService {
 
     static async getAllBreeds(limit, page) {
+        console.log(apiUrl)
         try {
             const response = await axios.get(apiUrl + '/breeds',
                 {
@@ -120,6 +121,4 @@ export default class DogService {
             console.log(e)
         }
     }
-
-
 }
