@@ -8,7 +8,6 @@ const apiUrl = 'https://api.thedogapi.com/v1'
 export default class DogService {
 
     static async getAllBreeds(limit, page) {
-        console.log(apiUrl)
         try {
             const response = await axios.get(apiUrl + '/breeds',
                 {
