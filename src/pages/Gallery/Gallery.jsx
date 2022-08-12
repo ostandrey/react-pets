@@ -15,7 +15,6 @@ const Gallery = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(file)
         const formData  = new FormData();
         formData.append('file', file)
         setDataFile(formData)
@@ -46,23 +45,32 @@ const Gallery = () => {
                         <a href="https://thecatapi.com/privacy" target="_blank">upload guidelines</a>
                         or face deletion.
                     </h3>
-                    <form method="post" action="#" onSubmit={onSubmit}>
-                        <div className={classes.files}>
+                    <form method="post" action="#" onSubmit={onSubmit} className={classes.files}>
                             <input type="file" multiple='' onChange={e => setFile(e.target.files[0])}/>
+                            {
+                                !file && <>
+                                    <img src={require('../../assets/not-found-image.png')} alt="close" />
+                                    <p>
+                                        <span>Drag here</span>
+                                        your file or
+                                        <span>Click here</span>
+                                        to upload
+                                    </p>
+                                </>
+                            }
                             {
                                 file && <img src={URL.createObjectURL(file)}/>
                             }
-                        </div>
-                        {
-                            !file && <p>No file selected</p>
-                        }
-                        {
-                            file && <>
-                                <h3>Image File Name: {file.name}</h3>
-                                <MyButton className={classes.upload_btn}>Upload photo</MyButton>
-                            </>
-                        }
                     </form>
+                    {
+                        !file && <h3>No file selected</h3>
+                    }
+                    {
+                        file && <>
+                            <h3>Image File Name: {file.name}</h3>
+                            <MyButton className={classes.upload_btn}>Upload photo</MyButton>
+                        </>
+                    }
                 </MyModal>
             </div>
             <div className={classes.grid_container}>

@@ -38,6 +38,7 @@
     border: none;
     border-radius: 10px;
     padding: 10px;
+    margin-left: auto;
 }
 
 .grid_container {
@@ -63,31 +64,48 @@
 
 /* File uploader */
 .files input {
-    outline: 2px dashed #92b0b3;
-    outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 120px 0px 85px 35%;
-    text-align: center !important;
-    margin: 0;
-    width: 100% !important;
-}
-.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
-}
-.files{ position:relative}
-.files:after {  pointer-events: none;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 0;
+    height: inherit;
     position: absolute;
-    top: 60px;
+    width: inherit;
+    z-index: 999;
+    top: 0;
     left: 0;
-    width: 50px;
-    right: 0;
-    height: 56px;
-    content: "";
-    display: block;
-    margin: 0 auto;
-    background-size: 100%;
-    background-repeat: no-repeat;
 }
-.color input{ background-color:#f1f1f1;}
+.files {
+    background-color: #fff;
+    border: 2px dashed #fbe0dc;
+    border-radius: 20px;
+    height: 320px;
+    margin-top: 40px;
+    overflow: hidden;
+    padding: 20px 40px;
+    position: relative;
+    width: 100%;
+}
+
+.files img, p {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+
+/*.files:after {  pointer-events: none;*/
+/*    position: absolute;*/
+/*    top: 60px;*/
+/*    left: 0;*/
+/*    width: 50px;*/
+/*    right: 0;*/
+/*    height: 56px;*/
+/*    content: "";*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    background-size: 100%;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
+/*.color input{ background-color:#f1f1f1;}*/
