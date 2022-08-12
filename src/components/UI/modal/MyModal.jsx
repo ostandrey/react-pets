@@ -3,7 +3,7 @@ import classes from './MyModal.module.css'
 
 const MyModal = ({children, visible, setVisible}) => {
 
-    const rootClasses = [classes.myModal];
+    const rootClasses = [classes.modal];
 
     if(visible) {
         rootClasses.push(classes.active)
@@ -11,7 +11,7 @@ const MyModal = ({children, visible, setVisible}) => {
 
     return (
         <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-            <div className={classes.myModalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={classes.modal_content} onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>
         </div>

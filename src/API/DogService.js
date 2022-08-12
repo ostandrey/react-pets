@@ -120,4 +120,18 @@ export default class DogService {
             console.log(e)
         }
     }
+
+    static async uploadImage(file) {
+        console.log(file.get('file'))
+        try {
+            const response = await axios.post(apiUrl + `/images/upload`, file,
+                {
+                    headers
+                }
+            )
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
