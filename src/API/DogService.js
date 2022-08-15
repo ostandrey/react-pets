@@ -31,9 +31,18 @@ export default class DogService {
         }
     }
 
-    static async getRandomBreed() {
+    static async getRandomBreed({order, type, breed_id, limit}) {
+        console.log(order, type, breed_id, limit)
         try {
-            const response = await axios.get(apiUrl + `/images/search`)
+            const response = await axios.get(apiUrl + `/images/search`, {
+                params: {
+                    order: order || "RANDOM",
+                    mime_types: type,
+                    breed_id,
+                    limit,
+                    // page: page - 1,
+                }
+            })
             return response;
         } catch (e) {
             console.log(e)
@@ -129,6 +138,17 @@ export default class DogService {
                     headers
                 }
             )
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async getUploadedImages() {
+        try {
+            const response = await axios.get(apiUrl + `/images`, {
+                headers
+            })
             return response;
         } catch (e) {
             console.log(e)
