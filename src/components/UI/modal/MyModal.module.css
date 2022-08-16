@@ -1,0 +1,26 @@
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal_content {
+    padding: 25px;
+    background: #F8F8F7;
+    border-radius: 10px;
+    min-width: 250px;
+    height: 100%;
+    width: 50%;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding: 30px;
+}

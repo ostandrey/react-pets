@@ -3,7 +3,6 @@ import classes from "./DogsListItem.module.css";
 import {useNavigate} from "react-router-dom";
 
 const DogsListItem = ({item, ...props}) => {
-    console.log(item)
     const router = useNavigate();
     const [isHovering, setIsHovering] = useState(false);
 

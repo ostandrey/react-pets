@@ -8,7 +8,7 @@ import DogsList from "../../components/DogsList/DogsList";
 
 const Likes = () => {
     const [likes, setLikes] = useState(null);
-    // const [breedImage, setImage] = useState(null);
+    // const [likeImages, setImage] = useState(null);
 
     const [fetchLikes, isLikesLoading, likesError] = useFetching(async () => {
         const likes = await DogService.getSpecificVotes(1);
@@ -16,8 +16,9 @@ const Likes = () => {
     });
 
     // const [fetchImageById, isBreedImageLoading, breedImageError] = useFetching(async () => {
-    //     let breedImage = await DogService.getImageById(likes.image_id);
-    //     setImage(breedImage.data);
+    //     console.log(likes)
+    //     const likeImages = await DogService.getImageById(likes.image_id);
+    //     setImage(likeImages.data);
     // });
 
     useEffect(() => {
@@ -29,6 +30,8 @@ const Likes = () => {
     //         fetchImageById();
     //     }
     // }, [likes])
+    //
+    // console.log(likeImages)
 
     return (
         <section className={classes.content_wrapper}>

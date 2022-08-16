@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import DogService from "../../API/DogService";
 import {useParams} from "react-router-dom";
-import Header from "../../components/Header/Header";
 import Loader from "../../components/UI/Loader/Loader";
 import classes from "./BreedIdPage.module.css";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
@@ -14,6 +13,7 @@ const BreedIdPage = () => {
 
     const [fetchBreedsByName, isBreedsByNameLoading, breedsByNameError] = useFetching(async () => {
         let breed = await DogService.getBreedsByName(params.name);
+        console.log(breed)
         setBreed(...breed.data);
     });
 
