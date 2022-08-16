@@ -7,7 +7,7 @@ const apiUrl = 'https://api.thedogapi.com/v1'
 
 export default class DogService {
 
-    static async getAllBreeds(limit, page) {
+    static async getAllBreeds(limit, page = 1) {
         try {
             const response = await axios.get(apiUrl + '/breeds',
                 {
@@ -31,8 +31,16 @@ export default class DogService {
         }
     }
 
-    static async getRandomBreed({order, type, breed_id, limit}) {
-        console.log(order, type, breed_id, limit)
+    static async getRandomBreed() {
+        try {
+            const response = await axios.get(apiUrl + `/images/search`)
+            return response;
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static async getRandomBreeds({order, type, breed_id, limit}, page = 1) {
         try {
             const response = await axios.get(apiUrl + `/images/search`, {
                 params: {
@@ -40,7 +48,7 @@ export default class DogService {
                     mime_types: type,
                     breed_id,
                     limit,
-                    // page: page - 1,
+                    page: page - 1,
                 }
             })
             return response;
@@ -70,7 +78,6 @@ export default class DogService {
     }
 
     static async saveFavorite(image_id) {
-        console.log(image_id)
         try {
             const response = await axios.post(apiUrl + `/favourites`,
                 {
@@ -131,17 +138,11 @@ export default class DogService {
     }
 
     static async uploadImage(file) {
-        console.log(file.get('file'))
-        try {
-            const response = await axios.post(apiUrl + `/images/upload`, file,
-                {
-                    headers
-                }
-            )
-            return response;
-        } catch (e) {
-            console.log(e)
-        }
+        const response = await axios.post(apiUrl + `/images/upload`, file,
+            {
+                headers
+            })
+        return response;
     }
 
     static async getUploadedImages() {

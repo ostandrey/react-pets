@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import classes from "./Gallery.module.css";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import MyButton from "../../components/UI/MyButton";
@@ -6,12 +6,12 @@ import MyModal from "../../components/UI/modal/MyModal";
 import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
+import Pagination from "../../components/UI/pagination/Pagination";
+import {getPageCount} from "../../utils/pages";
 
 const Gallery = () => {
     const [modal, setModal] = useState(false);
-
     const [file, setFile] = useState(null);
-    const [dataFile, setDataFile] = useState(null);
     const [uploadedImages, setUploadedImages] = useState(null);
     const [breedNames, setBreedNames] = useState([]);
 
@@ -21,18 +21,22 @@ const Gallery = () => {
         breed_id: '',
         limit: 5
     })
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
     const [fetchBreedNames, isBreedNamesLoading, breedNamesError] = useFetching(async () => {
         const response = await DogService.getAllBreeds();
         setBreedNames(response.data);
     });
 
-    const [fetchUploadedImages, isUploadedImagesLoading, uploadedImagesError] = useFetching(async (filterValue) => {
-        const response = await DogService.getRandomBreed(filterValue);
+    const [fetchUploadedImages, isUploadedImagesLoading, uploadedImagesError] = useFetching(async (filterValue, page) => {
+        const response = await DogService.getRandomBreeds(filterValue, page);
         setUploadedImages(response.data);
+        const totalCount = response.headers['pagination-count']
+        setTotalPages(getPageCount(totalCount, filterValue.limit));
     });
 
-    const [fetchLikes, isLikesLoading, likesError] = useFetching(async (file) => {
+    const [uploadImage, isUploadImageLoading, uploadImageError, uploadImageSuccess] = useFetching(async (file) => {
         await DogService.uploadImage(file);
     });
 
@@ -40,15 +44,24 @@ const Gallery = () => {
         e.preventDefault();
         const formData  = new FormData();
         formData.append('file', file)
-        setDataFile(formData)
+        uploadImage(formData);
+    }
+
+    const refresh = () => {
+        fetchUploadedImages(filterValue, page)
     }
 
     useEffect(() => {
-        fetchLikes(dataFile);
-        fetchUploadedImages(filterValue);
-        fetchBreedNames()
-    }, [dataFile, filterValue])
+        fetchBreedNames();
+        fetchUploadedImages(filterValue, page);
+        if(uploadImageSuccess) {
+            setFile(null)
+        }
+    }, [page, uploadImageSuccess])
 
+    const changePage = (page) => {
+        setPage(page)
+    }
 
     return (
         <section className={classes.content_wrapper}>
@@ -72,7 +85,7 @@ const Gallery = () => {
                             or face deletion.
                         </h3>
                     </div>
-                    <form method="post" action="#" onSubmit={onSubmit} className={classes.files}>
+                    <form method="post" action="#" className={classes.files}>
                             <input type="file" multiple='' onChange={e => setFile(e.target.files[0])}/>
                             {
                                 !file && <>
@@ -86,7 +99,9 @@ const Gallery = () => {
                                 </>
                             }
                             {
-                                file && <img src={URL.createObjectURL(file)} alt="dog"/>
+                                file && <div  className={classes.file_img}>
+                                    <img src={URL.createObjectURL(file)} alt="dog"/>
+                                </div>
                             }
                     </form>
                     {
@@ -95,7 +110,26 @@ const Gallery = () => {
                     {
                         file && <div className={classes.upload_actions}>
                             <h3 className={classes.modal_subtitle}>Image File Name: {file.name}</h3>
-                            <MyButton className={classes.upload_btn}>Upload photo</MyButton>
+                            {
+                                !isUploadImageLoading &&
+                                <MyButton className={classes.upload_btn} onClick={onSubmit}>Upload photo</MyButton>
+                            }
+                            {
+                                isUploadImageLoading &&
+                                <MyButton className={classes.upload_btn} disabled={true}>Uploading</MyButton>
+                            }
+                        </div>
+                    }
+                    {
+                        uploadImageError && <div className={classes.upload_message}>
+                            <img src={require('../../assets/error.png')} alt="error"/>
+                            <p>No Dog found - try a different one</p>
+                        </div>
+                    }
+                    {
+                        uploadImageSuccess && <div className={classes.upload_message}>
+                            <img src={require('../../assets/success.png')} alt="success"/>
+                            <p>Thanks for the Upload - Dog found!</p>
                         </div>
                     }
                 </MyModal>
@@ -156,22 +190,27 @@ const Gallery = () => {
                     </select>
                 </div>
                 <div className={classes.gallery_group_item}>
-                    <label className={classes.gallery_group_title}>Limit</label>
-                    <select className={classes.select}
-                            value={filterValue.limit}
-                            onChange={(e) =>
-                                setFilterValue({
-                                    order: filterValue.order,
-                                    type: filterValue.type,
-                                    breed_id: filterValue.breed_id,
-                                    limit: Number(e.target.value),
-                                })}
-                    >
-                        <option value={5}>Limit: 5</option>
-                        <option value={10}>Limit: 10</option>
-                        <option value={15}>Limit: 15</option>
-                        <option value={20}>Limit: 20</option>
-                    </select>
+                    <div>
+                        <label className={classes.gallery_group_title}>Limit</label>
+                        <select className={classes.select}
+                                value={filterValue.limit}
+                                onChange={(e) =>
+                                    setFilterValue({
+                                        order: filterValue.order,
+                                        type: filterValue.type,
+                                        breed_id: filterValue.breed_id,
+                                        limit: Number(e.target.value),
+                                    })}
+                        >
+                            <option value={5}>Limit: 5</option>
+                            <option value={10}>Limit: 10</option>
+                            <option value={15}>Limit: 15</option>
+                            <option value={20}>Limit: 20</option>
+                        </select>
+                    </div>
+                    <MyButton className={classes.upload_btn} onClick={refresh}>
+                        <img src={require('../../assets/refresh.png')} alt="refresh" />
+                    </MyButton>
                 </div>
             </div>
 
@@ -205,6 +244,10 @@ const Gallery = () => {
                     }
                 </div>
             }
+            <Pagination
+                totalPages={totalPages}
+                changePage={changePage}
+            />
             {/*<div className={classes.grid_container}>*/}
             {/*    <div className={classes.div1}></div>*/}
             {/*    <div className={classes.div2}></div>*/}
