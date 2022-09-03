@@ -6,7 +6,9 @@ const Navigation = () => {
     return (
         <div className={classes.container}>
             <Link to='/home'>
-                <img src={require("../../assets/Logo.png")} alt="Logo"/>
+                <figure>
+                    <img src={require("../../assets/Logo.png")} alt="Logo"/>
+                </figure>
             </Link>
             <section className={classes.title_container}>
                 <h1 className={classes.title}>Hi intern!</h1>
@@ -17,7 +19,9 @@ const Navigation = () => {
                 <nav className={classes.nav_buttons}>
                     <Link to='/voting' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_voting].join(' ')}>
-                            <img src={require("../../assets/vote-table.png")} alt="vote-table"/>
+                            <figure>
+                                <img src={require("../../assets/vote-table.png")} alt="vote-table"/>
+                            </figure>
                         </div>
                         <div className={classes.nav_btn}>
                             <h2 className={classes.btn_title}>
@@ -27,7 +31,9 @@ const Navigation = () => {
                     </Link>
                     <Link to='/breeds' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_breeds].join(' ')}>
-                            <img src={require("../../assets/pet-breeds.png")} alt="pet-breeds"/>
+                            <figure>
+                                <img src={require("../../assets/pet-breeds.png")} alt="pet-breeds"/>
+                            </figure>
                         </div>
                         <div className={classes.nav_btn}>
                             <h2 className={classes.btn_title}>
@@ -37,7 +43,9 @@ const Navigation = () => {
                     </Link>
                     <Link to='/gallery' className={classes.nav_container}>
                         <div className={[classes.nav_card, classes.card_gallery].join(' ')}>
-                            <img src={require("../../assets/images-search.png")} alt="images-search"/>
+                            <figure>
+                                <img src={require("../../assets/images-search.png")} alt="images-search"/>
+                            </figure>
                         </div>
                         <div className={classes.nav_btn}>
                             <h2 className={classes.btn_title}>

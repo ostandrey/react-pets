@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Gallery.module.css";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import MyButton from "../../components/UI/MyButton";
@@ -11,6 +11,8 @@ import {getPageCount} from "../../utils/pages";
 
 const Gallery = () => {
     const [modal, setModal] = useState(false);
+    const [isHovering, setIsHovering] = useState(null);
+    const [imageId, setImageId] = useState('');
     const [file, setFile] = useState(null);
     const [uploadedImages, setUploadedImages] = useState(null);
     const [breedNames, setBreedNames] = useState([]);
@@ -40,6 +42,10 @@ const Gallery = () => {
         await DogService.uploadImage(file);
     });
 
+    const [fetchFavourites, isFavouritesLoading, favouritesError] = useFetching(async () => {
+        await DogService.saveFavorite(imageId);
+    });
+
     const onSubmit = (e) => {
         e.preventDefault();
         const formData  = new FormData();
@@ -57,11 +63,22 @@ const Gallery = () => {
         if(uploadImageSuccess) {
             setFile(null)
         }
-    }, [page, uploadImageSuccess])
+        if(imageId) {
+            fetchFavourites(imageId)
+        }
+    }, [page, uploadImageSuccess, imageId])
 
     const changePage = (page) => {
         setPage(page)
     }
+
+    const handleMouseOver = (id) => {
+        setIsHovering(id);
+    };
+
+    const handleMouseOut = () => {
+        setIsHovering(null);
+    };
 
     return (
         <section className={classes.content_wrapper}>
@@ -224,8 +241,8 @@ const Gallery = () => {
                     {
                         uploadedImages && uploadedImages.map(item =>
                             <div className={classes.container} key={item.id}
-                                // onMouseOver={handleMouseOver}
-                                // onMouseOut={handleMouseOut}
+                                 onMouseOver={() => handleMouseOver(item.id)}
+                                 onMouseOut={handleMouseOut}
                             >
                                 {
                                     item && <img
@@ -234,11 +251,15 @@ const Gallery = () => {
                                         className={classes.image}
                                     />
                                 }
-                                {/*{isHovering && (*/}
-                                {/*    <div className={classes.container_hover} onClick={() => router(`/breeds/${item.name}`)}>*/}
-                                {/*        <div className={classes.name_hover}>{item.name}</div>*/}
-                                {/*    </div>*/}
-                                {/*)}*/}
+                                {isHovering === item.id && (
+                                    <div className={classes.container_hover}
+                                         onClick={() => setImageId(item.id)}
+                                    >
+                                        <div className={classes.name_hover}>
+                                            <img src={require('../../assets/heart.png')} alt="favourite" />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         )
                     }

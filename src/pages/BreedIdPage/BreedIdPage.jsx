@@ -13,7 +13,6 @@ const BreedIdPage = () => {
 
     const [fetchBreedsByName, isBreedsByNameLoading, breedsByNameError] = useFetching(async () => {
         let breed = await DogService.getBreedsByName(params.name);
-        console.log(breed)
         setBreed(...breed.data);
     });
 

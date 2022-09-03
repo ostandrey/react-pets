@@ -24,7 +24,7 @@ export default class DogService {
 
     static async getBreedsByName(name) {
         try {
-            const response = await axios.get(apiUrl + `/breeds/search?name=${name}`)
+            const response = await axios.get(apiUrl + `/breeds/search?q=${name}`)
             return response;
         } catch (e) {
             console.log(e)

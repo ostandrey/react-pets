@@ -187,6 +187,7 @@ p > span {
     cursor: pointer;
     background-color: #C4C4C4;
     border-radius: 20px;
+    position: relative;
 }
 
 .image {
@@ -257,6 +258,30 @@ p > span {
 
 .select_limit {
     max-width: 120px;
+}
+
+.container_hover {
+    display: flex;
+    background: rgba(255, 134, 142, 0.6);
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+}
+
+.name_hover {
+    display: flex;
+    margin: 10px;
+    align-self: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    color: #FF868E;
 }
 
 /*.files:after {  pointer-events: none;*/

@@ -10,10 +10,16 @@
 /*}*/
 
 .search_bar {
-    padding: 15px 20px;
+    display: flex;
+    padding: 10px 20px;
     width: 470px;
     background: #FFFFFF;
     border-radius: 20px;
+    gap: 10px;
+}
+
+.search_input {
+    width: 100%;
     border: none;
 
     font-family: 'Jost', sans-serif;
@@ -22,6 +28,20 @@
     font-size: 20px;
     line-height: 30px;
     color: #8C8C8C;
+}
+
+.search_btn {
+    display: flex;
+    background-color: #fbe0dc;
+    color: #ff868e;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 10px;
+    letter-spacing: 2px;
+    line-height: 16px;
+    padding: 10px;
+    transition: .3s;
 }
 
 .reaction_link {

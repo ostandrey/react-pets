@@ -9,6 +9,7 @@ import Favourites from "../pages/Favourites/Favourites";
 import Likes from "../pages/Likes/Likes";
 import Dislikes from "../pages/Dislikes/Dislikes";
 import Layout from "./Layout";
+import Search from "../pages/Search/Search";
 
 const AppRouter = () => {
     return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
                 <Route path="/favourites" element={<Favourites />}/>
                 <Route path="/likes" element={<Likes />}/>
                 <Route path="/dislikes" element={<Dislikes />}/>
+                <Route path="/search" element={<Search />}/>
                 {/*<Route path="/error"  element={<Error />}/>*/}
             </Route>
         </Routes>

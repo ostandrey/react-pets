@@ -23,3 +23,11 @@ body {
     background: #F8F8F7;
     min-height: 100%;
 }
+
+button {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

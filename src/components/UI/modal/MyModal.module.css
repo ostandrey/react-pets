@@ -23,4 +23,5 @@
     align-items: center;
     height: 100%;
     padding: 30px;
+    z-index: 999;
 }
