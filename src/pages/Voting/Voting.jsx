@@ -48,13 +48,13 @@ const Voting = () => {
 
     useEffect(() => {
         fetchRandomDog();
-        fetchVotes();
         if(imageId && (voteValue !== 1 || voteValue !== 2)) {
             fetchFavourites()
         }
         if(imageId && voteValue) {
             createVote()
         }
+        fetchVotes();
     }, [imageId, voteValue])
 
     if(!dog.length) {

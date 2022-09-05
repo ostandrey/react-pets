@@ -15,8 +15,8 @@ const AppRouter = () => {
     return (
         <Routes>
             <Route exact path="/home"  element={<Home />}/>
-            <Route path='*' element={<Navigate replace to="/home" />}/>
-            <Route exact path="/"  element={<Layout />}>
+            <Route exact path='/' element={<Navigate replace to="/home" />}/>
+            <Route exact path="/" element={<Layout />}>
                 <Route index path='/voting' element={<Voting />}/>
                 <Route exact path="/breeds"  element={<Breeds />}/>
                 <Route exact path="/breeds/:name"  element={<BreedIdPage />}/>

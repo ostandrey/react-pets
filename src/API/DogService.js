@@ -106,18 +106,18 @@ export default class DogService {
         }
     }
 
-    static async getSpecificVotes(value) {
-        try {
-            const response = await axios.get(apiUrl + `/votes`,
-                {
-                    headers,
-                    params: value
-                })
-            return response;
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    // static async getSpecificVotes(value) {
+    //     try {
+    //         const response = await axios.get(apiUrl + `/votes`,
+    //             {
+    //                 headers,
+    //                 params: value
+    //             })
+    //         return response;
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
     static async createVote(image_id, value) {
         try {

@@ -6,7 +6,7 @@ const ReactionList = ({votes}) => {
         <div className={classes.reaction_list}>
             {
                 votes.map(vote =>
-                    <div className={classes.reaction_item}>
+                    <div className={classes.reaction_item} key={vote.id}>
                         <span className={classes.reaction_time}>
                             22:35
                         </span>
