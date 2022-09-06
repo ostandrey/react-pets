@@ -1,3 +1,5 @@
+@import 'src/styles/variables';
+
 .content_wrapper {
     width: 680px;
     margin-top: 10px;
@@ -30,7 +32,7 @@
 
 .breed_container {
     margin-top: 50px;
-    border: 2px solid #FBE0DC;
+    border: 2px solid $primary;
     border-radius: 20px;
     position: relative;
 }

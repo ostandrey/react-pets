@@ -1,6 +1,6 @@
 import React from 'react';
 import MyButton from "../MyButton";
-import classes from "./Pagination.module.css";
+import classes from "./Pagination.module.scss";
 import {usePagination} from "../../../hooks/usePagination";
 
 const Pagination = ({totalPages, changePage}) => {

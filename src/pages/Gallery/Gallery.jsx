@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from "./Gallery.module.css";
+import classes from "./Gallery.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import MyButton from "../../components/UI/MyButton";
 import MyModal from "../../components/UI/modal/MyModal";

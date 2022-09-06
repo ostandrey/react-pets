@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import classes from "./Header.module.css";
+import classes from "./Header.module.scss";
 import MyInput from "../UI/MyInput";
 import {Link, useNavigate} from "react-router-dom";
 import MyButton from "../UI/MyButton";

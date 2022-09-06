@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from "./Breadcrumb.module.css";
+import classes from "./Breadcrumb.module.scss";
 import MyButton from "../UI/MyButton";
 import {useLocation, useNavigate, useParams} from 'react-router-dom'
 

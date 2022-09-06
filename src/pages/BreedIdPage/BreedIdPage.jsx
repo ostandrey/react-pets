@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import DogService from "../../API/DogService";
 import {useParams} from "react-router-dom";
 import Loader from "../../components/UI/Loader/Loader";
-import classes from "./BreedIdPage.module.css";
+import classes from "./BreedIdPage.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import {useFetching} from "../../hooks/useFetching";
 

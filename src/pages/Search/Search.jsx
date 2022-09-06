@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";
 import {getPageCount} from "../../utils/pages";
-import classes from "./Search.module.css";
+import classes from "./Search.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import MyButton from "../../components/UI/MyButton";
 import Loader from "../../components/UI/Loader/Loader";

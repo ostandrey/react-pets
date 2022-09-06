@@ -1,9 +1,11 @@
+@import "src/styles/variables";
+
 .loader {
     width: 100px;
     height: 100px;
     margin: auto;
     border-radius: 50%;
-    border: 5px solid #fbe0dc;
+    border: 5px solid $primary;
     border-top: 5px solid #ff868e;
     animation: rotate 1s infinite ease-in-out;
 }

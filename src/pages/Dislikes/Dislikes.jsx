@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from "./Dislikes.module.css";
+import classes from "./Dislikes.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";

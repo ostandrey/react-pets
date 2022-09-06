@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import classes from "./Breeds.module.css";
+import classes from "./Breeds.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import BreedsList from "../../components/BreedsList/BreedsList";

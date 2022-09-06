@@ -1,14 +1,15 @@
 import React from 'react';
-import classes from "./ReactionList.module.css";
+import classes from "./ReactionList.module.scss";
 
 const ReactionList = ({votes}) => {
+    console.log(votes)
     return (
         <div className={classes.reaction_list}>
             {
                 votes.map(vote =>
                     <div className={classes.reaction_item} key={vote.id}>
                         <span className={classes.reaction_time}>
-                            22:35
+                            {new Date(vote.created_at).toLocaleTimeString().slice(0, 5)}
                         </span>
                         {
                             vote.value === 1

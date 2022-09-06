@@ -1,3 +1,5 @@
+@import "src/styles/variables";
+
 .container {
     width: 446px;
     height: 544px;
@@ -12,26 +14,26 @@
 
 .title {
     font-family: "Jost", sans-serif;
-    font-weight: 500;
-    font-size: 44px;
+    font-weight: $bold-weight;
+    font-size: $extra-large-size;
     line-height: 58px;
-    color: #1D1D1D;
+    color: $black;
 }
 
 .title_sm {
     font-family: 'Jost', sans-serif;
-    font-weight: 500;
+    font-weight: $bold-weight;
     font-size: 20px;
     line-height: 29px;
-    color: #1D1D1D;
+    color: $black;
 }
 
 .subtitle {
     font-family: 'Jost', sans-serif;
-    font-weight: 400;
+    font-weight: $regular-weight;
     font-size: 20px;
     line-height: 29px;
-    color: #8C8C8C;
+    color: $dark-grey;
 }
 
 .links_container {
@@ -60,23 +62,23 @@
 }
 
 .nav_container:hover .nav_card {
-    border-color: #FFFFFF;
+    border-color: $white;
 }
 
 .nav_container:hover .nav_btn {
-    background-color: #FBE0DC;
+    background-color: $primary;
 }
 
 .nav_container:active .nav_card {
-    border-color: #FBE0DC;
+    border-color: $primary;
 }
 
 .nav_container:active .nav_btn {
-    background-color: #FF868E;
+    background-color: $primaryDeep;
 }
 
 .nav_container:active .btn_title {
-    color: #FFFFFF;
+    color: $white;
 }
 
 .nav_card {
@@ -90,20 +92,20 @@
 }
 
 .card_voting {
-    background: #B4B7FF;
+    background: $purple;
 }
 
 .card_breeds {
-    background: #97EAB9;
+    background: $success;
 }
 
 .card_gallery {
-    background: #FFD280;
+    background: $warning;
 }
 
 .nav_btn {
     width: 100%;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 10px;
     margin-top: 10px;
 }
@@ -111,14 +113,14 @@
 .btn_title {
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: $bold-weight;
+    font-size: $extra-small-size;
     line-height: 16px;
 
     text-align: center;
     letter-spacing: 2px;
 
-    color: #FF868E;
+    color: $primaryDeep;
     text-transform: uppercase;
     margin: 10px 0;
 }

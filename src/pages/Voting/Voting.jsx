@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from './Voting.module.css'
+import classes from './Voting.module.scss'
 import ReactionList from "../../components/ReactionList/ReactionList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
@@ -38,9 +38,6 @@ const Voting = () => {
                 break;
             case 'dislike':
                 setVoteValue(2);
-                break;
-            case 'favourite':
-                setVoteValue(3);
                 break;
             default: return
         }

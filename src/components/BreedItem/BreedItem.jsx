@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import classes from "./BreedsItem.module.css";
+import classes from "./BreedsItem.module.scss";
 import {useNavigate} from "react-router-dom";
 
 const BreedItem = ({breed, ...props}) => {
