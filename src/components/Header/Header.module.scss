@@ -15,7 +15,7 @@
     display: flex;
     padding: 10px 20px;
     width: 470px;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
     gap: 10px;
 }
@@ -26,19 +26,19 @@
 
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: $regular-weight;
+    font-size: $regular-size;
     line-height: 30px;
-    color: #8C8C8C;
+    color: $dark-grey;
 }
 
 .search_btn {
     display: flex;
     background-color: $primary;
-    color: #ff868e;
+    color: $primary-deep;
     border-radius: 10px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: $extra-small-size;
+    font-weight: $bold-weight;
     gap: 10px;
     letter-spacing: 2px;
     line-height: 16px;
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
     border: none;
 }

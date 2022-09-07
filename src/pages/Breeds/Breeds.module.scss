@@ -1,8 +1,10 @@
+@import 'src/styles/variables';
+
 .content_wrapper {
     width: 680px;
     margin-top: 10px;
     padding: 20px;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
 }
 
@@ -15,17 +17,17 @@
     width: 226px;
     padding: 8px 10px;
 
-    background: #F8F8F7;
+    background: $grey;
     border-radius: 10px;
     border: none;
 
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: $regular-weight;
+    font-size: $small-size;
     line-height: 24px;
 
-    color: #8C8C8C;
+    color: $dark-grey;
 }
 
 .select_limit {
@@ -34,7 +36,7 @@
 
 .sorting_btn {
     padding: 10px;
-    background: #F8F8F7;
+    background: $grey;
     border-radius: 10px;
     border: none;
     cursor: pointer;

@@ -4,7 +4,7 @@
     width: 680px;
     margin-top: 10px;
     padding: 20px;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
 }
 
@@ -17,15 +17,15 @@
 .upload_btn {
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: $bold-weight;
+    font-size: $extra-small-size;
     line-height: 16px;
 
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
 
-    color: #FF868E;
+    color: $primary-deep;
     border: none;
     padding: 12px 30px;
     background: $primary;
@@ -36,7 +36,7 @@
 
 .close_btn {
     display: flex;
-    background: #FFFFFF;
+    background: $white;
     border: none;
     border-radius: 10px;
     padding: 10px;
@@ -50,7 +50,7 @@
 }
 
 .grid_container > div {
-    background-color: #C4C4C4;
+    background-color: $light-grey;
     border-radius: 20px;
 }
 
@@ -71,33 +71,33 @@
 .modal_title {
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 36px;
+    font-weight: $bold-weight;
+    font-size: $large-size;
     line-height: 52px;
 
-    color: #1D1D1D;
+    color: $black;
 }
 
 .modal_subtitle {
     margin-top: 10px;
     font-family: 'Jost', sans-serif;
-    font-weight: 400;
+    font-weight: $regular-weight;
     font-size: 20px;
     line-height: 29px;
-    color: #8C8C8C;
+    color: $dark-grey;
     text-align: center;
 }
 
 .text_link {
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $regular-weight;
     font-size: 20px;
     line-height: 29px;
 
     text-align: center;
     text-decoration: none;
-    color: #FF868E;
+    color: $primary-deep;
 }
 
 /* File uploader */
@@ -113,7 +113,7 @@
     left: 0;
 }
 .files {
-    background-color: #fff;
+    background-color: $white;
     border: 3px dashed $primary;
     border-radius: 20px;
     height: 320px;
@@ -145,10 +145,10 @@
     transform: translate(-50%,-50%);
 
     font-family: 'Jost', sans-serif;
-    font-weight: 500;
+    font-weight: $bold-weight;
     font-size: 20px;
     line-height: 29px;
-    color: #8C8C8C;
+    color: $dark-grey;
     text-align: center;
 }
 
@@ -161,7 +161,7 @@
 }
 
 p > span {
-    color: #1d1d1d;
+    color: $black;
 }
 
 .upload_actions {
@@ -176,7 +176,7 @@ p > span {
 .upload_message {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 10px;
     gap: 10px;
     margin-top: 20px;
@@ -187,7 +187,7 @@ p > span {
     height: 140px;
     text-align: center;
     cursor: pointer;
-    background-color: #C4C4C4;
+    background-color: $light-grey;
     border-radius: 20px;
     position: relative;
 }
@@ -201,7 +201,7 @@ p > span {
 
 .gallery_group {
     grid-gap: 10px 20px;
-    background-color: #f8f8f7;
+    background-color: $grey;
     border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -223,8 +223,8 @@ p > span {
 .gallery_group_item > button {
     padding: 10px;
     align-self: flex-end;
-    background-color: #fff;
-    color: #ff868e;
+    background-color: $white;
+    color: $primary-deep;
 }
 
 .gallery_group_item:last-child  {
@@ -233,9 +233,9 @@ p > span {
 }
 
 .gallery_group_title {
-    color: #8c8c8c;
+    color: $dark-grey;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: $bold-weight;
     line-height: 18px;
     margin-left: 10px;
     text-transform: uppercase;
@@ -251,11 +251,11 @@ p > span {
 
     font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: $regular-weight;
+    font-size: $small-size;
     line-height: 24px;
 
-    color: #8C8C8C;
+    color: $dark-grey;
 }
 
 .select_limit {
@@ -279,11 +279,11 @@ p > span {
     margin: 10px;
     align-self: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 10px;
     padding: 5px;
     text-align: center;
-    color: #FF868E;
+    color: $primary-deep;
 }
 
 /*.files:after {  pointer-events: none;*/
