@@ -1,33 +1,9 @@
 @import 'src/styles/variables';
 
-.content_wrapper {
-    width: 680px;
-    margin-top: 10px;
-    padding: 20px;
-    background: $white;
-    border-radius: 20px;
-}
-
 .control_panel {
     display: flex;
+    width: 100%;
     gap: 9px;
-}
-
-.select {
-    width: 226px;
-    padding: 8px 10px;
-
-    background: $grey;
-    border-radius: 10px;
-    border: none;
-
-    font-family: 'Jost', sans-serif;
-    font-style: normal;
-    font-weight: $regular-weight;
-    font-size: $small-size;
-    line-height: 24px;
-
-    color: $dark-grey;
 }
 
 .select_limit {
@@ -52,4 +28,5 @@
     /*"div1 div5 div5"*/
     /*"div4 div5 div5";*/
     margin-top: 20px;
+    width: 100%;
 }

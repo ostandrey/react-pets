@@ -4,7 +4,7 @@ import DogService from "../../API/DogService";
 import {getPageCount} from "../../utils/pages";
 import classes from "./Search.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import MyButton from "../../components/UI/MyButton";
+import MyButton from "../../components/UI/button/MyButton";
 import Loader from "../../components/UI/Loader/Loader";
 import BreedsList from "../../components/BreedsList/BreedsList";
 import Pagination from "../../components/UI/pagination/Pagination";

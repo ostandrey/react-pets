@@ -2,7 +2,6 @@ import React from 'react';
 import classes from "./ReactionList.module.scss";
 
 const ReactionList = ({votes}) => {
-    console.log(votes)
     return (
         <div className={classes.reaction_list}>
             {

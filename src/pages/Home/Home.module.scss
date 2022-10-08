@@ -3,6 +3,11 @@
 .container {
     background: $primary;
     border-radius: 20px;
+
+
+    @media (max-width: 1200px) {
+        display: none;
+    }
 }
 
 .main_picture {
@@ -14,9 +19,18 @@
     justify-content: flex-end;
     height: auto;
 
-    @media (min-width: 1201px) and (max-width: 1600px){
+    @media (min-width: 1200px) and (max-width: 1400px){
         top: 10%;
         bottom: 10%;
+    }
+
+    @media (min-width: 1401px) and (max-width: 1600px){
+        top: 5%;
+        bottom: 5%;
+    }
+
+    @media (max-width: 1200px) {
+        display: none;
     }
 }
 

@@ -5,6 +5,7 @@ import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import DogsList from "../../components/DogsList/DogsList";
+import MyInput from "../../components/UI/input/MyInput";
 
 const Dislikes = () => {
     const [dislikes, setDislikes] = useState(null);

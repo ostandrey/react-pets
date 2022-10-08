@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./Gallery.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import MyButton from "../../components/UI/MyButton";
+import MyButton from "../../components/UI/button/MyButton";
 import MyModal from "../../components/UI/modal/MyModal";
 import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";

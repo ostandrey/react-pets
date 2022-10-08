@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./Breadcrumb.module.scss";
-import MyButton from "../UI/MyButton";
+import MyButton from "../UI/button/MyButton";
 import {useLocation, useNavigate, useParams} from 'react-router-dom'
 
 const Breadcrumb = () => {
@@ -15,9 +15,7 @@ const Breadcrumb = () => {
     return (
         <div className={classes.breadcrumb_wrapper}>
             <MyButton className={classes.btn_back} onClick={() => navigate(-1)}>
-                <figure>
-                    <img src={require("../../assets/arrow-back.png")} alt="Back"/>
-                </figure>
+                <img src={require("../../assets/arrow-back.png")} alt="Back"/>
             </MyButton>
             <span className={classes.breadcrumb}>
                 {breadcrumb}
