@@ -1,57 +1,8 @@
 @import "src/styles/variables";
 
-.container {
-    width: 446px;
-    height: 544px;
-    border-radius: 20px;
-    position: sticky;
-    top: 0;
-
-    @media (min-width: 1200px) and (max-width: 1400px){
-        display: flex;
-        flex-direction: column;
-        justify-self: flex-start;
-    }
-
-    @media (max-width: 1199px) {
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-    }
-}
-
-.title_container {
-    margin-top: 80px;
-}
-
-.title {
-    font-weight: $bold-weight;
-    font-size: $extra-large-size;
-    line-height: 58px;
-    color: $black;
-}
-
-.title_sm {
-    font-weight: $bold-weight;
-    font-size: $regular-size;
-    line-height: 29px;
-    color: $black;
-}
-
-.subtitle {
-    font-weight: $regular-weight;
-    font-size: $regular-size;
-    line-height: 29px;
-    color: $dark-grey;
-}
-
-.links_container {
-    margin-top: 60px;
-}
-
 .nav_buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px;
     gap: 20px;
 }

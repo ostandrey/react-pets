@@ -1,0 +1,38 @@
+@import "src/styles/variables";
+
+.drawer {
+  background-color: #f8f8f7;
+  height: 100%;
+  left: 0;
+  //opacity: 0;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  transition: .3s;
+  //visibility: hidden;
+  width: 100vw;
+  z-index: 9999;
+  overflow: hidden;
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn_close {
+    padding: 21px 15px;
+    height: 60px;
+    background-color: #FFF;
+    border-radius: 20px;
+    transition: 0.3s background-color;
+  }
+}
+
+.close_btn {
+  display: flex;
+  background: $white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: auto;
+}

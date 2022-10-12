@@ -1,0 +1,82 @@
+@import "src/styles/variables";
+
+.header {
+  display: flex;
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.search_bar {
+  display: flex;
+  padding: 10px 20px;
+  width: 100%;
+  background: $white;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  gap: 10px;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    border: 3px solid $primary;
+  }
+
+  &_active {
+    border: 3px solid $primary-deep!important;
+  }
+}
+
+.search_input {
+  width: 100%;
+  border: none;
+
+  font-style: normal;
+  font-weight: $regular-weight;
+  font-size: $regular-size;
+  line-height: 30px;
+  color: $dark-grey;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.search_btn {
+  display: flex;
+  background-color: $primary;
+  color: $primary-deep;
+  border-radius: 10px;
+  font-size: $extra-small-size;
+  font-weight: $bold-weight;
+  gap: 10px;
+  letter-spacing: 2px;
+  line-height: 16px;
+  padding: 10px;
+  transition: .3s;
+}
+
+.reaction_link {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: $white;
+  border-radius: 20px;
+  border: none;
+  transition: 0.3s background ease-out;
+
+  &:hover {
+    background: $primary;
+  }
+}
+
+.button__home {
+  display: none;
+  padding: 21px 15px;
+  height: 60px;
+  background-color: $white;
+  border-radius: 20px;
+  transition: 0.3s background-color;
+
+  @media (max-width: 1200px) {
+    display: block;
+  }
+}

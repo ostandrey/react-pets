@@ -1,24 +1,12 @@
 import React from 'react';
 import Header from "./Header/Header";
 import { Outlet } from 'react-router-dom';
-
-const queries = "(max-width: 1200px)";
+import AppBar from "./AppBar/AppBar";
 
 const Layout = () => {
-    const [tablet] = window.matchMedia(queries);
-
-    if (tablet) {
-        console.log(tablet)
-        return ( 'hello'
-            // <div className="wrapper">
-            //     <Outlet />
-            // </div>
-        )
-    }
-
     return (
         <div className="wrapper">
-            <Header />
+            <AppBar />
             <Outlet />
         </div>
     );
