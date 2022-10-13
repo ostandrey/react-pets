@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from "./Header.module.scss";
 import {Link} from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
