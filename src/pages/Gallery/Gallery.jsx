@@ -8,6 +8,7 @@ import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import Pagination from "../../components/UI/pagination/Pagination";
 import {getPageCount} from "../../utils/pages";
+import Container from "../../components/UI/container/Container";
 
 const Gallery = () => {
     const [modal, setModal] = useState(false);
@@ -81,7 +82,7 @@ const Gallery = () => {
     };
 
     return (
-        <section className={classes.content_wrapper}>
+        <Container>
             <div className={classes.control_panel}>
                 <Breadcrumb/>
                 <MyButton className={classes.upload_btn} onClick={() => setModal(true)}>
@@ -276,7 +277,7 @@ const Gallery = () => {
             {/*    <div className={classes.div4}></div>*/}
             {/*    <div className={classes.div5}></div>*/}
             {/*</div>*/}
-        </section>
+        </Container>
     );
 };
 

@@ -5,6 +5,7 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import {useFetching} from "../../hooks/useFetching";
+import Container from "../../components/UI/container/Container";
 
 const Voting = () => {
     const [dog, setRandomDog] = useState([]);
@@ -61,8 +62,7 @@ const Voting = () => {
     }
 
     return (
-        <div className={classes.container}>
-            <section className={classes.content_wrapper}>
+            <Container>
                 <Breadcrumb/>
                 <div className={classes.content}>
                     {
@@ -102,8 +102,7 @@ const Voting = () => {
                             voteValue={voteValue}
                         />
                 }
-            </section>
-        </div>
+            </Container>
     );
 };
 

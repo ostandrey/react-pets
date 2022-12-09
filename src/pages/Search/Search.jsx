@@ -9,6 +9,7 @@ import Loader from "../../components/UI/Loader/Loader";
 import BreedsList from "../../components/BreedsList/BreedsList";
 import Pagination from "../../components/UI/pagination/Pagination";
 import {useLocation} from "react-router-dom";
+import Container from "../../components/UI/container/Container";
 
 const Search = () => {
     const location = useLocation();
@@ -75,7 +76,7 @@ const Search = () => {
 
     return (
 
-            <section className={classes.content_wrapper}>
+            <Container>
                 <Breadcrumb/>
                 {isBreedImageLoading
                     ? <Loader/>
@@ -132,7 +133,7 @@ const Search = () => {
                 {/*    totalPages={totalPages}*/}
                 {/*    changePage={changePage}*/}
                 {/*/>*/}
-            </section>
+            </Container>
     );
 };
 

@@ -66,16 +66,16 @@ const Breeds = () => {
 
     return (
         <Container>
-                <div className={classes.control_panel}>
-                    <Breadcrumb/>
+            <div className={classes.control_panel}>
+                <Breadcrumb/>
+                <div>
                     <select
                         value={selectedBreeds}
                         onChange={e => setSelectedBreeds(e.target.value)}
                         className={`select`}>
                         <option value="All dogs">All dogs</option>
                         {
-                            breedNames.map((breedName) =>
-                                    <option value={breedName.name}>{breedName.name}</option>
+                            breedNames.map((breedName) => <option value={breedName.name}>{breedName.name}</option>
                             )
                         }
                     </select>
@@ -102,20 +102,21 @@ const Breeds = () => {
                         />
                     </MyButton>
                 </div>
-                {isBreedsLoading
-                    ? <Loader/>
-                    :
-                    <div className={classes.grid_container}>
-                        {
-                            breedError && <h1>Error(</h1>
-                        }
-                        <BreedsList breeds={sortedAndFilteredBreeds}/>
-                    </div>
-                }
-                <Pagination
-                    totalPages={totalPages}
-                    changePage={changePage}
-                />
+            </div>
+            {isBreedsLoading
+                ? <Loader/>
+                :
+                <div className={classes.grid_container}>
+                    {
+                        breedError && <h1>Error(</h1>
+                    }
+                    <BreedsList breeds={sortedAndFilteredBreeds}/>
+                </div>
+            }
+            <Pagination
+                totalPages={totalPages}
+                changePage={changePage}
+            />
         </Container>
     );
 };

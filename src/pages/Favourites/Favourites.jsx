@@ -5,6 +5,7 @@ import {useFetching} from "../../hooks/useFetching";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import DogsList from "../../components/DogsList/DogsList";
+import Container from "../../components/UI/container/Container";
 
 const Favourites = () => {
     const [favourites, setFavourites] = useState(null);
@@ -19,7 +20,7 @@ const Favourites = () => {
     }, [])
 
     return (
-        <section className={classes.content_wrapper}>
+        <Container>
             <div className={classes.control_panel}>
                 <Breadcrumb/>
             </div>
@@ -33,7 +34,7 @@ const Favourites = () => {
                     <DogsList items={favourites}/>
                 </div>
             }
-        </section>
+        </Container>
     );
 };
 

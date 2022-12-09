@@ -6,6 +6,7 @@ import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import DogsList from "../../components/DogsList/DogsList";
 import MyInput from "../../components/UI/input/MyInput";
+import Container from "../../components/UI/container/Container";
 
 const Dislikes = () => {
     const [dislikes, setDislikes] = useState(null);
@@ -20,7 +21,7 @@ const Dislikes = () => {
     }, [])
 
     return (
-        <section className={classes.content_wrapper}>
+        <Container>
             <div className={classes.control_panel}>
                 <Breadcrumb/>
             </div>
@@ -31,7 +32,7 @@ const Dislikes = () => {
                     <DogsList items={dislikes}/>
                 </div>
             }
-        </section>
+        </Container>
     );
 };
 
