@@ -9,13 +9,14 @@ import Favourites from "../pages/Favourites/Favourites";
 import Likes from "../pages/Likes/Likes";
 import Dislikes from "../pages/Dislikes/Dislikes";
 import Layout from "./Layout";
+import Search from "../pages/Search/Search";
 
 const AppRouter = () => {
     return (
         <Routes>
             <Route exact path="/home"  element={<Home />}/>
-            <Route path='*' element={<Navigate replace to="/home" />}/>
-            <Route exact path="/"  element={<Layout />}>
+            <Route exact path='/' element={<Navigate replace to="/home" />}/>
+            <Route exact path="/" element={<Layout />}>
                 <Route index path='/voting' element={<Voting />}/>
                 <Route exact path="/breeds"  element={<Breeds />}/>
                 <Route exact path="/breeds/:name"  element={<BreedIdPage />}/>
@@ -23,6 +24,7 @@ const AppRouter = () => {
                 <Route path="/favourites" element={<Favourites />}/>
                 <Route path="/likes" element={<Likes />}/>
                 <Route path="/dislikes" element={<Dislikes />}/>
+                <Route path="/search" element={<Search />}/>
                 {/*<Route path="/error"  element={<Error />}/>*/}
             </Route>
         </Routes>

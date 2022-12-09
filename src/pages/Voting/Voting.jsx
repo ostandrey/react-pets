@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import classes from './Voting.module.css'
+import classes from './Voting.module.scss'
 import ReactionList from "../../components/ReactionList/ReactionList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import Loader from "../../components/UI/Loader/Loader";
 import {useFetching} from "../../hooks/useFetching";
+import Container from "../../components/UI/container/Container";
 
 const Voting = () => {
     const [dog, setRandomDog] = useState([]);
@@ -39,22 +40,19 @@ const Voting = () => {
             case 'dislike':
                 setVoteValue(2);
                 break;
-            case 'favourite':
-                setVoteValue(3);
-                break;
             default: return
         }
     }
 
     useEffect(() => {
         fetchRandomDog();
-        fetchVotes();
         if(imageId && (voteValue !== 1 || voteValue !== 2)) {
             fetchFavourites()
         }
         if(imageId && voteValue) {
             createVote()
         }
+        fetchVotes();
     }, [imageId, voteValue])
 
     if(!dog.length) {
@@ -64,8 +62,7 @@ const Voting = () => {
     }
 
     return (
-        <div className={classes.container}>
-            <section className={classes.content_wrapper}>
+            <Container>
                 <Breadcrumb/>
                 <div className={classes.content}>
                     {
@@ -105,8 +102,7 @@ const Voting = () => {
                             voteValue={voteValue}
                         />
                 }
-            </section>
-        </div>
+            </Container>
     );
 };
 

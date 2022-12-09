@@ -1,13 +1,14 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import classes from "./Breeds.module.css";
+import classes from "./Breeds.module.scss";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import DogService from "../../API/DogService";
 import BreedsList from "../../components/BreedsList/BreedsList";
-import MyButton from "../../components/UI/MyButton";
+import MyButton from "../../components/UI/button/MyButton";
 import Loader from "../../components/UI/Loader/Loader";
 import {useFetching} from '../../hooks/useFetching'
 import {getPageCount} from "../../utils/pages";
 import Pagination from "../../components/UI/pagination/Pagination";
+import Container from "../../components/UI/container/Container";
 
 const Breeds = () => {
     const [breeds, setBreeds] = useState([]);
@@ -18,7 +19,6 @@ const Breeds = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
-    // const [searchQuery, setSearchQuery] = useState('');
 
     const [fetchBreeds, isBreedsLoading, breedError] = useFetching(async (limit, page) => {
         const response = await DogService.getAllBreeds(limit, page);
@@ -64,32 +64,23 @@ const Breeds = () => {
         setPage(page)
     }
 
-    // const searchedDogs = useMemo(() => {
-    //     return dogs.filter(dog => dog.name.toLowerCase().includes(searchQuery.toLowerCase()))
-    // }, [searchQuery, dogs])
-
     return (
-        <div>
-            {/*<Header*/}
-            {/*    value={searchQuery}*/}
-            {/*    onChange={e => setSearchQuery(e.target.value)}*/}
-            {/*/>*/}
-            <section className={classes.content_wrapper}>
-                <div className={classes.control_panel}>
-                    <Breadcrumb/>
+        <Container>
+            <div className={classes.control_panel}>
+                <Breadcrumb/>
+                <div>
                     <select
                         value={selectedBreeds}
                         onChange={e => setSelectedBreeds(e.target.value)}
-                        className={classes.select}>
+                        className={`select`}>
                         <option value="All dogs">All dogs</option>
                         {
-                            breedNames.map((breedName) =>
-                                    <option value={breedName.name}>{breedName.name}</option>
+                            breedNames.map((breedName) => <option value={breedName.name}>{breedName.name}</option>
                             )
                         }
                     </select>
                     <select
-                        className={[classes.select, classes.select_limit].join(' ')}
+                        className={`select ${classes.select_limit}`}
                         value={limit}
                         onChange={e => setLimit(e.target.value)}
                     >
@@ -111,22 +102,22 @@ const Breeds = () => {
                         />
                     </MyButton>
                 </div>
-                {isBreedsLoading
-                    ? <Loader/>
-                    :
-                    <div className={classes.grid_container}>
-                        {
-                            breedError && <h1>Error(</h1>
-                        }
-                        <BreedsList breeds={sortedAndFilteredBreeds}/>
-                    </div>
-                }
-                <Pagination
-                    totalPages={totalPages}
-                    changePage={changePage}
-                />
-            </section>
-        </div>
+            </div>
+            {isBreedsLoading
+                ? <Loader/>
+                :
+                <div className={classes.grid_container}>
+                    {
+                        breedError && <h1>Error(</h1>
+                    }
+                    <BreedsList breeds={sortedAndFilteredBreeds}/>
+                </div>
+            }
+            <Pagination
+                totalPages={totalPages}
+                changePage={changePage}
+            />
+        </Container>
     );
 };
 

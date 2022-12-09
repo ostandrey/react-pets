@@ -1,0 +1,40 @@
+@import "src/styles/variables";
+
+.drawer {
+  background-color: #f8f8f7;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  transition:  .3s ease-in-out;
+  visibility: hidden;
+  width: 100vw;
+  z-index: 9999;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      display: flex;
+      background: $white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      margin-left: auto;
+      transition: .3s ease-in-out;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+}

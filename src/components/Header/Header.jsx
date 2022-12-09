@@ -1,26 +1,21 @@
-import React, {useState} from 'react';
-import classes from "./Header.module.css";
-import MyInput from "../UI/MyInput";
+import React from 'react';
+import classes from "./Header.module.scss";
 import {Link} from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
-const Header = ({value, onChange}) => {
+const Header = () => {
     return (
-        <div className={classes.header}>
-            <MyInput
-                value={value}
-                onChange={onChange}
-                className={classes.search_bar}
-            />
-            <Link to="/likes" className={classes.reaction_link}>
-                <img src={require("../../assets/smiley.png")} alt="good smiley"/>
+        <header className={classes.container}>
+            <Link to='/home'>
+                <img src={require("../../assets/Logo.png")} alt="Logo"/>
             </Link>
-            <Link to="/favourites" className={classes.reaction_link}>
-                <img src={require("../../assets/heart.png")} alt="heart"/>
-            </Link>
-            <Link to="/dislikes" className={classes.reaction_link}>
-                <img src={require("../../assets/bad-smiley.png")} alt="bad smiley"/>
-            </Link>
-        </div>
+            <section className={classes.title_container}>
+                <h1 className={classes.title}>Hi user!</h1>
+                <h3 className={classes.subtitle}>Welcome to Pets App</h3>
+            </section>
+            <h3 className={classes.title_sm}>Lets start using The Dog API</h3>
+            <Navigation/>
+        </header>
     );
 };
 

@@ -1,15 +1,17 @@
+@import 'src/styles/variables';
+
 .container {
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin: inherit;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 
 .btn {
     padding: 10px;
-    background: #F8F8F7;
+    background: $grey;
     border-radius: 10px;
     border: none;
     cursor: pointer;

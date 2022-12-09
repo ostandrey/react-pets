@@ -24,7 +24,7 @@ export default class DogService {
 
     static async getBreedsByName(name) {
         try {
-            const response = await axios.get(apiUrl + `/breeds/search?name=${name}`)
+            const response = await axios.get(apiUrl + `/breeds/search?q=${name}`)
             return response;
         } catch (e) {
             console.log(e)
@@ -106,18 +106,18 @@ export default class DogService {
         }
     }
 
-    static async getSpecificVotes(value) {
-        try {
-            const response = await axios.get(apiUrl + `/votes`,
-                {
-                    headers,
-                    params: value
-                })
-            return response;
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    // static async getSpecificVotes(value) {
+    //     try {
+    //         const response = await axios.get(apiUrl + `/votes`,
+    //             {
+    //                 headers,
+    //                 params: value
+    //             })
+    //         return response;
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
     static async createVote(image_id, value) {
         try {

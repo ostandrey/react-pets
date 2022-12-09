@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import classes from "./DogsListItem.module.css";
+import classes from "./DogsListItem.module.scss";
 import {useNavigate} from "react-router-dom";
 
 const DogsListItem = ({item, ...props}) => {

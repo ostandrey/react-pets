@@ -1,0 +1,17 @@
+@import "src/styles/variables";
+
+.button1 {
+  color: $primary-deep;
+  background-color: $white;
+
+  svg {
+    fill: $primary-deep;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $primary;
+      color: $primary-deep;
+    }
+  }
+}

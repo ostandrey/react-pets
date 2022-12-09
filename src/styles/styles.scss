@@ -1,0 +1,74 @@
+@import 'variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+#root {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding: 30px;
+    background: $grey;
+
+    @media (max-width: 1300px){
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+    }
+
+    @media (max-width: 600px){
+        padding: 10px;
+    }
+}
+
+.App {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding: 30px;
+    background: $grey;
+    min-height: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    //max-width: 680px;
+    max-width: 800px;
+}
+
+.title {
+
+}
+
+.select {
+    padding: 8px 10px;
+
+    background: $grey;
+    border-radius: 10px;
+
+    font-style: normal;
+    font-weight: $regular-weight;
+    font-size: $small-size;
+    line-height: 24px;
+
+    color: $dark-grey;
+
+    width: 100%;
+    outline: none;
+    border: 3px solid transparent;
+    transition: 0.2s border ease-out;
+
+    &:hover {
+        border: 3px solid $primary;
+    }
+}

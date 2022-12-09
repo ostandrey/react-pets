@@ -1,8 +1,10 @@
+@import 'src/styles/variables';
+
 .content_wrapper {
     width: 680px;
     margin-top: 10px;
     padding: 20px;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
 }
 
@@ -12,25 +14,24 @@
 }
 
 .breed_id {
-    background: #FF868E;
+    background: $primary-deep;
     border-radius: 10px;
     padding: 5px 20px;
 
-    font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: $bold-weight;
     font-size: 20px;
     line-height: 30px;
 
     text-align: center;
     letter-spacing: 2px;
 
-    color: #FFFFFF;
+    color: $white;
 }
 
 .breed_container {
     margin-top: 50px;
-    border: 2px solid #FBE0DC;
+    border: 2px solid $primary;
     border-radius: 20px;
     position: relative;
 }
@@ -47,7 +48,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    background: #FFFFFF;
+    background: $white;
     border-radius: 20px;
     top: -30px;
     left: 0;
@@ -61,23 +62,22 @@
 
 .breed_title {
 
-    font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 36px;
+    font-weight: $bold-weight;
+    font-size: $large-size;
     line-height: 52px;
 
-    color: #1D1D1D;
+    color: $black;
 }
 
 .breed_subtitle {
     font-family: 'Jost',sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: $bold-weight;
     font-size: 20px;
     line-height: 29px;
 
-    color: #8C8C8C;
+    color: $dark-grey;
 }
 
 .breed_info {
@@ -86,13 +86,12 @@
     grid-gap: 50px;
     margin: 75px 60px 40px;
 
-    font-family: 'Jost', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: $bold-weight;
+    font-size: $small-size;
     line-height: 23px;
 
-    color: #1D1D1D;
+    color: $black;
 }
 
 .breed_info span {
@@ -100,6 +99,6 @@
 }
 
 .breed_text {
-    color: #8C8C8C;
+    color: $dark-grey;
     display: inline-block;
 }

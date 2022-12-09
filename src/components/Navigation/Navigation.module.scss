@@ -1,0 +1,98 @@
+@import "src/styles/variables";
+
+.nav_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+    }
+}
+
+.nav_container {
+    display: flex;
+    flex-direction: column;
+    min-width: 138px;
+    text-decoration: none;
+
+    &:hover {
+        .nav_card {
+            border-color: $white;
+        }
+
+        .nav_btn {
+            background-color: $primary;
+        }
+    }
+}
+
+.nav_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 198px;
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    transition: 0.3s ease-out;
+
+    @media (max-width: 500px) {
+        display: none;
+    }
+}
+
+.card_voting {
+    background: $purple;
+}
+
+.card_breeds {
+    background: $success;
+}
+
+.card_gallery {
+    background: $warning;
+}
+
+.nav_btn {
+    width: 100%;
+    background: $white;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: 0.3s ease-out;
+}
+
+.btn_title {
+    font-style: normal;
+    font-weight: $bold-weight;
+    font-size: $extra-small-size;
+    line-height: 16px;
+
+    text-align: center;
+    letter-spacing: 2px;
+
+    color: $primary-deep;
+    text-transform: uppercase;
+    margin: 10px 0;
+    transition: .3s;
+}
+
+.active {
+    .nav_card {
+        border-color: $primary !important;
+    }
+
+    .nav_btn {
+        background-color: $primary-deep !important;
+    }
+
+    .btn_title {
+        color: $white;
+    }
+}
+
+
+.disable {
+    display: none;
+}
